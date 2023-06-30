@@ -1,0 +1,110 @@
+{% extends 'main1.html' %}
+{% block title %}Stock{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+   
+    <div class="main">
+       
+        <div class="content-wrap">
+            <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/product/manageprod/">Manage Stock</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Stock View AND Update</li>
+        </ol>
+    </nav>
+ 
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-10 p-r-5 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Manage Stock<span></span></h1>
+                            </div><br>
+                      
+                                
+                            
+                          {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div><br><br>
+                          {% endfor %}
+                        
+
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Full Details Of Stock</h4>
+                            </div>
+                            <div class="card-body">
+                               
+                                <form action="/admin/product/stock/{{product.pid}}/" method="POST">{% csrf_token %}
+                                    <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label">Product Name </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{product.pname}}</label>
+
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Product Price </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{product.pprice}}</label>
+
+                                        </div>
+                                    </div>
+                                      <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Description </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{product.pdesc}}</label>
+
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Information </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{product.pinfo}}</label>
+
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Product Stock</label>
+                                        <div class="col-sm-6">
+                                        {% comment %} <label for="staticEmai">{{order.cid.email}}</label> {% endcomment %}
+                                                <input type="number" class="form-control" id="pstock" name="pstock" value="{{product.pstock}}" min="0" required>
+                                           <div class="invalid-feedback">
+                                                Please Enter Stock in number!
+                                                </div>
+                                        </div>
+                                    </div>
+                                 
+                                    {% comment %} </div> {% endcomment %}
+                                    <button type="submit" class="btn btn-primary " id="fire">Save</button>
+                                                                          
+                               </form>
+                              
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+  
+
+    {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             {% endcomment %}
+<script>
+
+
+ </script>
+{% endblock body %}

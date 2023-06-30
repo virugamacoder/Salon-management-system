@@ -1,0 +1,125 @@
+{% extends 'main1.html' %}
+{% block title %} Product Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+Hello
+ <div class="content-wrap">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/product/manageprod/">Manage Product</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+        </ol>
+    </nav>
+    <div class="main">
+
+        <div class="content-wrap">
+
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title-">
+                                <h1> Add Product<span></span></h1>
+                            </div><br>
+                    
+                        </div>
+                    
+                                        <form action="/admin/product/add/" method="POST" enctype="multipart/form-data" id="myform"  class="needs-validation" novalidate>{% csrf_token %}
+                                    
+                                            <div class="form-group" >
+                                                <label >Product Name</label>
+                                                <input type="text" class="form-control"  id="pname" name="pname" required>
+                                                <div class="invalid-feedback">
+                                                Please Enter Valid Product name!
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="form-group">
+                                                <label >Price</label>
+                                                <input type="text" class="form-control" id="pprice" name="pprice" required>
+                                              <div class="invalid-feedback">
+                                                Please Enter Price in number!
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Discription</label>
+                                                <textarea class="form-control" id="pdesc" rows="4" name="pdesc" required></textarea>
+                                                <div class="invalid-feedback">
+                                                Please Enter Description!
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Information</label>
+                                                <textarea class="form-control" id="pinfo" rows="4" name="pinfo" required></textarea>
+                                                <div class="invalid-feedback">
+                                                Please Enter Information!
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Stock</label>
+                                                <input type="text" class="form-control" id="pstock" name="pstock" required>
+                                                <div class="invalid-feedback">
+                                                Please Enter Stock in number!
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="form-group ">
+                                                <label for="Imgae">Image</label>
+                                                <input type="file" class="form-control-file" id="pimg" name="pimg" required>
+                                               <label class="invalid-feedback">
+                                                Please Select the Image !
+                                               </label>
+                                            </div>
+                                  
+                                            <button type="submit" class="btn btn-primary fire" id="fire">Add Product</button>
+                                        </form>
+                                    <!-- </div>
+                                </div>
+                            </div>
+                        </div> -->
+                       
+                       
+                    </div>
+                </div>
+             </div>
+        </div><!-- content warp -->
+    </div><!-- main -->
+
+</div><!-- content warp -->
+    <script>
+  
+    
+
+    // submit the form
+  (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+    {% comment %} <script src="{% static 'jsadmin/bootstrap.min.js' %} "></script>
+    <script src="{% static 'jsadmin/popper.js' %} "></script>
+
+    <script src="{% static 'jsadmin/jquery.js' %} "></script> {% endcomment %}
+    
+        {% comment %} $('.alert').alert(); {% endcomment %}
+    </script>         
+
+{% endblock body %}

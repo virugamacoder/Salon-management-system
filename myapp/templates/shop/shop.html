@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %} Shop {% endblock title %}
+{% block css %} Shop {% endblock css %}
+
+{% load static %}
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+
+{% block body %} 
+
+        <div id="wrapper">
+          <div class="page-title">
+            <div class="page-title-content">
+              <div class="shell">
+                <p class="page-title-header">Shop </p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="shop-panel">
+            <div class="shell">
+              <div class="shop-panel-inner">
+                <div class="shop-panel-left"><a class="shop-panel-link" href="/s/cart/"><span class="icon fa fa-shopping-cart carts"></span> <span class="count" >{{count}}</span></a><span class="shop-panel-price" > </span></div>
+                <div class="shop-panel-right">
+                  
+                                     <div class="shop-panel-select"><span class="shop-panel-select-title">Sort By</span>
+                                      {% comment %} <form action="/s/shop/" method="post">
+                                        {% csrf_token %} {% endcomment %}
+                                   
+                                        <select class="form-control select-filter" data-minimum-results-for-search="Infinity" data-custom-theme="modern">
+                      <option value="3">Price</option>
+                      
+                      <option value="4" name="lh">Lowest to Highest</option>
+                      <option value="5" name="hl">Highest to Lowest</option>
+                    </select>
+
+                  {% comment %} </form> {% endcomment %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <section class="section-md bg-periglacial-blue text-center">
+            <div class="shell">
+             {% if products %}
+              <div class="range range-30">
+                 
+                {% for i in products  %}
+                <p>{{i.products}}</p>
+              
+
+                <div class="cell-sm-6 cell-md-4" id="product-{{ i.pid }}">
+                  <article class="product">
+                    <a class="product-image"  href="/s/single-product/{{i.pid}}"><img src="/media/{{i.pimg}}" alt="" width="175" height="168"/></a>
+                    <p class="product-title" name="pname" id="pname{{i.pid}}"><a href="/s/single-product/{{i.pid}}">{{i.pname}}</a></p>
+                    <p class="product-price"id="price" name="pprice">Rs.{{i.pprice}}
+                    </p>
+                          
+         
+                    {% for j in itemcart  %}
+                      
+                      {% if i.pid == j.product.pid %}
+                    
+                      <a class="btn-shop addcart" href="/s/cart/">
+                        <span class="btn-shop-icon fa fa-shopping-cart "></span>
+                        <span class="btn-shop-text " >GO TO CART</span>
+                      </a>
+                      
+                      {% else %}
+                     
+                      {% if forloop.last %}
+                    
+                      <a class="btn-shop addcart" href="  {% url 'myapp_shop:addcart' i.pid %}"  >
+                        <span class="btn-shop-icon fa fa-shopping-cart "></span>
+                        <span class="btn-shop-text " >ADD TO CART</span>
+                      </a> 
+                    
+                      {% endif %}
+                   {% endif %} 
+                    
+                    {% empty %}
+
+                    <a class="btn-shop addcart" href="  {% url 'myapp_shop:addcart' i.pid %}"  >
+                      <span class="btn-shop-icon fa fa-shopping-cart "></span>
+                      <span class="btn-shop-text " >ADD TO CART</span>
+                    </a> 
+                  {% endfor %}
+              
+
+            
+
+                 
+                 
+
+                  </article>
+
+                
+                </div> 
+                
+                 {% endfor %}
+                  <!-- </form> -->
+              </div>
+            
+              <ul class="pagination-custom">
+                <li class="disabled"><a href="#"></a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li class="ellipsis">...</li>
+                <li><a href="#">12</a></li>
+                <li><a href="#"></a></li>
+              </ul>
+             {% else %}
+             <h6>No have Any Product Available</h6>
+             {% endif %}
+            </div>
+          </section>
+        
+        {% endblock body %}
+
+{% block js%}
+ 
+<script>
+   
+ </script>
+{% endblock js %}
+
+
+{% block afterFooter%}
+</div>
+<div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+</main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+<script src="{% static 'js/core.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+{% endblock endofpage%}
+
+
+
+
+

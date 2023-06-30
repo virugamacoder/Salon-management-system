@@ -1,0 +1,250 @@
+{% extends 'main1.html' %}
+{% block title %}Service{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+   
+    <div class="main">
+       
+        <div class="content-wrap">
+ 
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12 p-r-5 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Manage Appointment<span></span></h1>
+                            </div><br>
+                      
+                                
+                      
+                          {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div><br><br>
+                          {% endfor %}
+                          
+                          
+              
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>OnGoing Appointment List </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    {% if apresent %}
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>Customer Name</th>
+                                                <th>Service</th>
+                                                <th>Barbar</th>
+                                                <th>Appointment Total(&#8377;)</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in apresent %}
+                                            
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                <td>{{i.cid.first_name}}  {{i.cid.last_name}}</td>
+                                                 <td>   
+                                                <ul>
+                                                      {% for sid in i.sid.all %}
+                                                        <li>{{sid.sname }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </td>
+                                                <td>{{i.eid.first_name}}  {{i.eid.last_name}}</td>
+                                                <td>{{i.aprice}}</td>
+                                                <td>{{i.adate}}</td>
+                                                <td>{{i.atime}}</td>
+                                                <td>{{i.astatus}}
+                                                    {% if i.astatus == "SCHEDULED" %}
+                                                    <a href="/admin/appointment/astatus/{{i.aid}}/" style="color:blue"><i
+                                                    class=" large ti-new-window"></i></i></a>
+                                                  {% endif%}
+
+                                                </td>
+                                              
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                       <p>No Any Present Appointment</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                  <br><hr><br>
+                        <div class="card">
+                            <div class="card-title">
+                                <h4> Upcoming Appointment List </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    {% if afuture %}
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>Customer Name</th>
+                                                <th>Service</th>
+                                                <th>Barbar</th>
+                                                <th>Appointment Total(&#8377;)</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Status</th>
+                                                {% comment %} <th>Edit</th>
+                                                 <th>Delete</th> {% endcomment %}
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in afuture %}
+                                            
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                <td>{{i.cid.first_name}}  {{i.cid.last_name}}</td>
+                                                 <td>   
+                                                <ul>
+                                                      {% for sid in i.sid.all %}
+                                                        <li>{{sid.sname }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </td>
+                                                <td>{{i.eid.first_name}}  {{i.eid.last_name}}</td>
+                                                <td>{{i.aprice}}</td>
+                                                <td>{{i.adate}}</td>
+                                                <td>{{i.atime}}</td>
+                                                <td>{{i.astatus}}
+                                                    {% if i.astatus == "SCHEDULED" %}
+                                                    <a href="/admin/appointment/astatus/{{i.aid}}/" style="color:blue"><i
+                                                    class=" large ti-new-window"></i></i></a>
+                                                  {% endif%}
+
+                                                </td>
+                                              
+
+
+{% comment %}                         
+                                                 <td> <a href="#modal{{forloop.counter}}" style="color:green" data-target="#modal"><i
+                                                            class=" red large material-icons"  >border_color</i></a>
+                         
+
+                                                </td>
+
+                                                <td><a href="/admin/customer/custdelete/{{i.id}}" style="color:red"> <i
+                                                            class=" red large material-icons">delete_forever</i></a>
+                                                </td> {% endcomment %}
+
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                      <p> No any Upcoming Appointment available</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div><br><hr><br>
+                      
+                            <div class="card">
+                                <div class="card-title">
+                                    <h4> Previous  Appointment List </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        {% if apast %}
+                                        <table class="table table-hover ">
+                                            <thead>
+                                                <tr>
+                                                    <th>SrNo.</th>
+                                                    <th>Customer Name</th>
+                                                    <th>Service</th>
+                                                    <th>Barbar</th>
+                                                    <th>Appointment Total(&#8377;)</th>
+                                                    <th>Date</th>
+                                                    <th>Time</th>
+                                                    <th>Status</th>
+                                                    {% comment %} <th>Edit</th>
+                                                    <th>Delete</th> {% endcomment %}
+                        
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in apast %}
+                        
+                                                <tr>
+                                                    <th>{{forloop.counter}}</th>
+                                                    <td>{{i.cid.first_name}} {{i.cid.last_name}}</td>
+                                                    <td>
+                                                        <ul>
+                                                            {% for sid in i.sid.all %}
+                                                            <li>{{sid.sname }}</li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </td>
+                                                    <td>{{i.eid.first_name}} {{i.eid.last_name}}</td>
+                                                    <td>{{i.aprice}}</td>
+                                                    <td>{{i.adate}}</td>
+                                                    <td>{{i.atime}}</td>
+                                                    <td>{{i.astatus}}</td>
+                        
+                        
+                        
+                        
+                                                    {% comment %} <td> <a href="#modal{{forloop.counter}}" style="color:green" data-target="#modal"><i
+                                                                class=" red large material-icons">border_color</i></a>
+                        
+                        
+                                                    </td>
+                        
+                                                    <td><a href="/admin/customer/custdelete/{{i.id}}" style="color:red"> <i
+                                                                class=" red large material-icons">delete_forever</i></a>
+                                                    </td>
+                         {% endcomment %}
+                                                </tr>
+                        
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        {% else %}
+                                         <p>No any Appointment is available </p>
+
+                                         {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                       
+                    </div>
+                  </div>
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+  
+
+    {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             {% endcomment %}
+<script>
+
+
+ </script>
+{% endblock body %}

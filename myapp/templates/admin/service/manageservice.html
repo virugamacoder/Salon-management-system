@@ -1,0 +1,103 @@
+{% extends 'main1.html' %}
+{% block title %}Service{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+   
+    <div class="main">
+       
+        <div class="content-wrap">
+ 
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-10 p-r-5 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Manage Service<span></span></h1>
+                            </div><br>
+                           <nav class="navbar navbar-light bg-light">
+                              <a class="navbar-brand" href="/admin/service/sadd/"><i class="ti-plus info"></i> Add New Service</a>
+                            </nav><br><br>
+                      
+                          {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div><br><br>
+                          {% endfor %}
+
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Service List </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                  {% if service %}
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in service %}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                <td><img src="/media/{{i.simg}}/" alt="" width="100" height="100" /></td>
+                                                <td>{{i.sname}}</td>
+                                                <td>{{i.sprice}}</td>
+                                               <td> <a href="/admin/service/supdate/{{i.sid}}/" style="color:green"><i
+                                                            class=" red large material-icons">border_color</i></a>
+                         
+
+                                                </td> 
+                                                 <!-- <td> <a href="#modal{{forloop.counter}}" style="color:green" data-target="#modal"><i
+                                                            class=" red large material-icons"  >border_color</i></a>
+                         
+
+                                                </td> -->
+
+                                                <td><a href="/admin/service/sdelete/{{i.sid}}" onclick="return confirm('Are you sure you want to Delete Service ');" style="color:red"> <i
+                                                            class=" red large material-icons">delete_forever</i></a>
+                                                </td>
+
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                     <p> No such any Service</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+ 
+
+    {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             {% endcomment %}
+<script>
+
+
+ </script>
+{% endblock body %}

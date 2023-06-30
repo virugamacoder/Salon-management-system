@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %} SignUp {% endblock title %}
+{% load static %}
+
+{% block head %}
+
+<link href="{% static 'cssadmin/lib/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/themify-icons.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/helper.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+{% endblock head %}
+
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+
+{% block body %}
+        
+<div id="wrapper">
+                
+  <div class="unix-login">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="login-content">
+            <div class="login-logo">
+
+              <a href="#"><span>Registration</span></a>
+            </div>
+
+            <div class="login-form border  border-secondary">
+              <h4>Create An Account</h4>
+              <form action="/signuphandle/" method="post" class="needs-validation" novalidate>
+                {% csrf_token %}  
+                <div class="form-group row">
+               
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">First Name</label>
+                    <input type="text" class="form-control" id="inputEmail4" name="fname" placeholder="Enter First Name" value="{{fname}}" required>
+                    <div class="invalid-feedback">
+                       Please Enter Valid Firstname
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Last Name</label>
+                    <input type="text" class="form-control" id="inputPassword4" name="lname" value="{{lname}}" placeholder="Enter Last Name" required>
+                     <div class="invalid-feedback">
+                       Please Enter Valid Lastname
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <label>Email address</label>
+                  <input type="email" name="email" value="{{email}}" class="form-control" placeholder="abc@gmail.com" required>
+                   <div class="invalid-feedback">
+                       Please Enter Valid email
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" name="pass1" class="form-control"  minlength="8" placeholder="Enter Password"  required>
+                  <div class="invalid-feedback">
+                       Please Enter Password must be 8 character
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Confirm Password</label>
+                  <input type="password" name="pass2"  class="form-control" minlength="8"  placeholder="Enter Confirm Password" required>
+                   <div class="invalid-feedback">
+                       Please Enter Valid  Password
+                    </div>
+                </div>
+            
+                
+                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+
+                <div class="register-link m-t-15 text-center">
+                  <p>Already have account ? <a href="/login/"> Login</a></p>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body%}
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+<script>
+  (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+</script>
+  </body>
+{% endblock endofpage%}
+
+
+

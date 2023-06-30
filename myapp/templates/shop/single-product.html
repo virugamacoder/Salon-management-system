@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %} Single-Product {% endblock title %}
+{% load static %}
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+{% block body %} 
+
+        <div id="wrapper">
+
+        <section class="section-xl bg-periglacial-blue">
+
+            <div class="shell"><a class="link link-primary link-return" href="/s/shop/">Back</a>
+              <article class="product-single">
+                <div class="product-single-left">
+                  <div class="slick-carousel-product">
+                    <!-- Slick Carousel-->
+                    <div class="slick-slider carousel-parent" data-arrows="false" data-dots="false" data-loop="true"
+                      data-swipe="true" data-items="1" data-child="#child-carousel" data-for="#child-carousel">
+                      <div class="item"><img src="/media/{{product.pimg}}" alt="" width="274"
+                          height="280" />
+                      </div>
+
+                      <div class="item"><img src="{% static "images/" %}product-single-2-274x280.png" alt="" width="274"
+                          height="280" />
+                      </div>
+                      <div class="item"><img src="{% static "images/" %}product-single-3-274x280.png" alt="" width="274"
+                          height="280" />
+                      </div>
+                      <div class="item"><img src="{% static "images/" %}product-single-4-274x280.png" alt="" width="274"
+                          height="280" />
+                      </div>
+                    </div>
+                    <div class="slick-slider carousel-child" id="child-carousel" data-for=".carousel-parent"
+                      data-arrows="false" data-loop="true" data-dots="false" data-swipe="true" data-items="3"
+                      data-xs-items="4" data-sm-items="3" data-md-items="4" data-lg-items="4" data-slide-to-scroll="1">
+                    
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="product-single-body">
+                  <p class="product-single-title"> {{product.pname}}</p>
+                  <div class="product-single-price-wrap">
+                    <p class="price"> &#8377; {{product.pprice}}</p>
+                  </div>
+                  <div class="product-single-text">
+                    <p>{{product.pdesc}}.</p>
+
+                  </div>
+                  <a class="btn-shop addcart" href="  {% url 'myapp_shop:addcart' product.pid %}">
+                    <span class="btn-shop-icon fa fa-shopping-cart "></span>
+                    <span class="btn-shop-text " >ADD TO CART</span>
+                  </a> 
+                </div>
+              </article>
+            </div>
+
+            <div class="product-single-body">
+
+              <section class="section-xl bg-periglacial-blue">
+                <div class="shell">
+                  <div class="range range-lg-center">
+                    <div class="cell-lg-10">
+                    
+                      <div class="tabs-custom tabs-horizontal tabs-corporate" id="tabs-1">
+                        <ul class="nav nav-tabs">
+                          <li class="active"><a href="#tabs-1-1" data-toggle="tab">Description</a></li>
+                          <li><a href="#tabs-1-2" data-toggle="tab">Information</a></li>
+                          <li><a href="#tabs-1-3" data-toggle="tab">Specification</a></li>
+                        </ul>
+                        <div class="tab-content">
+                          <div class="tab-pane fade in active" id="tabs-1-1">
+                            <p>{{product.pdesc}}.
+                            </p>
+                            <p></p>
+                          </div>
+                          <div class="tab-pane fade" id="tabs-1-2">
+                            <p>{{product.pinfo}}</p>
+                            <p>
+                            </p>
+                          </div>
+                          <div class="tab-pane fade" id="tabs-1-3">
+                            <p>
+                              </p>
+                          </div>
+                          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </section>
+
+        </section>
+
+
+          <section class="section-xl bg-periglacial-blue text-center">
+            <div class="shell">
+              <div class="range range-sm-center range-50">
+                <div class="cell-xs-12">
+                  <h2>Similar products</h2>
+                </div>
+                
+                <div class="cell-xs-12">
+                  <div class="range range-30">
+                    
+                  {% for product in product1  %}
+                  
+                    <div class="cell-sm-6 cell-md-4 height-fill">
+                      <article class="product"><a class="product-image" href="#"><img
+                            src="/media/{{product.pimg}}" alt="" width="164" height="168" /></a>
+                        <p class="product-title"><a href="#">{{product.pname}}</a></p>
+                        <p class="product-price"> Rs. {{product.pprice}}
+
+                        </p>
+                        
+                        <a class="btn-shop addcart" href="  {% url 'myapp_shop:addcart' product.pid %}">
+                          <span class="btn-shop-icon fa fa-shopping-cart "></span>
+                          <span class="btn-shop-text " >ADD TO CART</span>
+                        </a> 
+                   
+                          </article>
+                   
+
+                    </div>
+                   {% endfor %}
+                    </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+{% endblock body %}
+
+
+
+{% block afterFooter%}
+</div>
+<div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+</main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+
+</body>
+{% endblock endofpage%}
+
+
+
+
+

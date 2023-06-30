@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="wide wow-animation" lang="en">
+  <head>
+
+    <!-- Site Title-->
+    <title>{% block title %} {% endblock title %}</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'cssadmin/lib/themify-icons.css' %}" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    {% comment %} <link rel="styl esheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> {% endcomment %}
+    <!-- Stylesheets-->
+    <script src="https://kit.fontawesome.com/395c023056.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono:300,300italic,400,700%7CArvo:400,700">
+
+
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+      .alert{
+        position:fixed; 
+        top: 50px; 
+        right: 20px; 
+        width: 40%;
+        z-index:9999; 
+        border-radius:5px;
+    }
+
+    .alert-danger{
+       top: 60px; 
+      color:white;
+    }
+    </style>
+ 
+    {% block head %}
+
+    {% endblock head %} 
+
+  
+  </head>
+
+  {% block bodytag %}
+
+  {% endblock bodytag %}
+
+{% block beforebody %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+  {% if message.tags in 'success' %}
+  <div class="alert alert-success" role="alert">
+    {{ message }}
+  </div> 
+
+{% elif message.tags in 'error'%}
+  <div class="alert alert-danger" role="alert">
+    {{ message }} 
+  </div>
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<div class="page">
+  <main class="page-content" id="perspective">
+    <div class="content-wrapper">
+      <div class="page-header page-header-perspective">
+        <div class="page-header-left"><a class="brand" href="/"><img src="{% static "images/" %}logo-default-dark-200x36.png" alt="" width="200" height="36"/></a></div>
+        <div class="page-header-right">
+
+
+          
+          {% if user.is_authenticated and user.is_customer%}
+          <div class="dropdown">
+         
+             <div class="btn btn-xs btn-primary  btn-login-after dropdown-toggle" data-toggle="dropdown">
+               <span class="icon material-icons-person_outline"></span>
+               <span class="caret"></span>
+            </div>
+           
+              <ul class="dropdown-menu " style="margin-top:10px;">
+                <li><a href="/customer/"> <i class="fa-duotone fa-user"></i> My Account</a> </li>
+                <li><a href="/customer/aview/"> <i class="fa-solid fa-calendar-check"></i> Appointment</a> </li>
+                <li><a href="/customer/orderhistory/"><i class="fa-solid fa-bag-shopping"></i>  Order</a> </li>
+                <li><a href="/logout/"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+              </ul>
+        
+           
+             
+        </div>
+     {% else %}
+ 
+        <li>
+          <a href="/login/">
+     <div class="btn btn-xs btn-primary  btn-login">Login</div>
+          </a> 
+        </li>
+    
+     {% endif %}
+
+          <div class="booking-control"><a class="btn btn-xs btn-circle btn-primary" href="/a/step1/">BOOK NOW</a></div>
+
+          <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+            <button class="perspective-menu-toggle"><span></span></button>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock beforebody %}
+
+  
+{% block body %}
+
+
+{% endblock body %}
+
+
+{% block footer%}
+
+          {% comment %} Footer Start {% endcomment %}
+         
+        
+<footer class="page-footer page-footer-variant-3">
+  <div class="shell">
+    <div class="range range-50">
+      <div class="cell-sm-6 cell-md-4">
+        <h3>Pages</h3>
+        <div class="divider divider-conch"></div>
+        <ul class="footer-navigation row footer-navigation-vertical" style="max-width: 390px;">
+
+          <li class="col-xs-6"><a href="/">Home</a></li>
+          <li class="col-xs-6"><a href="/barbers/">Barbers</a></li>
+          <li class="col-xs-6"><a href="/about/">About</a></li>
+          <li class="col-xs-6"><a href="/s/shop/">Shop</a></li>
+          <li class="col-xs-6"><a href="/services/">Services</a></li>
+          <li class="col-xs-6"><a href="/contacts/">Contacts</a></li>
+        </ul>
+
+      </div>
+
+      <div class="cell-sm-6 cell-md-5">
+        <a class="brand" href="/"><img src="{% static "images/" %}logo-default-dark-200x36.png" alt="" width="200" height="36"/></a>
+        <div class="divider divider-conch"></div>
+        <div class="text-highlighted-wrap">
+          <p class="text-highlighted">Barbershop is a No.1 place to have a men’s haircut in San Francisco. Here you can get luxury barber experience at a reasonable price.</p>
+        </div>
+      </div>
+      <div class="cell-sm-6 cell-md-3">
+        <h3>Follow Us</h3>
+        <div class="divider divider-conch"></div>
+        <ul class="inline-list inline-list-xs">
+          <li><a class="icon icon-xs-outline icon-wild-sand-filled icon-circle fa-facebook" href="#"></a></li>
+          <li><a class="icon icon-xs-outline icon-wild-sand-filled icon-circle fa-twitter" href="#"></a></li>
+          <li><a class="icon icon-xs-outline icon-wild-sand-filled icon-circle fa-youtube" href="#"></a></li>
+          <li><a class="icon icon-xs-outline icon-wild-sand-filled icon-circle fa-linkedin" href="#"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+          {% comment %} Footer End {% endcomment %}
+
+
+{% endblock footer%}
+
+
+{% block afterFooter%}
+
+{%endblock afterFooter%}
+
+
+{% block Navbar%}
+
+      <!-- RD Navbar-->
+      <div class="rd-navbar-wrap">
+        <nav class="rd-navbar rd-navbar-default" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-layout="rd-navbar-sidebar" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-sidebar" data-stick-up-clone="false">
+          <div class="rd-navbar-inner">
+            <div class="rd-navbar-panel">
+              <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+              <div class="rd-navbar-brand"><a class="brand-name" href="/"><img src="{% static "images/" %}logo-default-dark-200x36.png" alt="" width="200" height="36"/></a></div>
+            </div>
+            <div class="rd-navbar-nav-wrap">
+              <div class="rd-navbar-nav-inner">
+                <ul class="rd-navbar-nav">
+                  <li class="active"><a href="/">Home</a>
+                    
+                  </li>
+                  <li><a href="/about/">About</a>
+                   
+                  </li>
+
+                  <li><a href="/services/">Services</a>
+                  </li>
+
+                  <li><a href="/barbers/">Barbers</a>
+                   
+                  </li>
+                  <li><a href="/s/shop/">Shop</a>
+                    
+                  </li>
+
+                  <li><a href="/contacts/">Contacts</a>
+                  </li>
+                </ul>
+                <div class="rd-navbar-nav-footer">
+                  <ul class="inline-list inline-list-md">
+                    <li><a class="icon icon-xs link-gray-base fa-facebook" href="#"></a></li>
+                    <li><a class="icon icon-xs link-gray-base fa-twitter" href="#"></a></li>
+                    <li><a class="icon icon-xs link-gray-base fa-youtube" href="#"></a></li>
+                    <li><a class="icon icon-xs link-gray-base fa-linkedin" href="#"></a></li>
+                  </ul>
+                </div>
+                <div class="rd-navbar-secondary"><a class="btn btn-xs btn-circle btn-primary" href="/">BOOK NOW</a></div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      {% comment %} End Rd NAV BAR {% endcomment %}
+
+{% endblock Navbar%}
+
+
+{% block pagecontrol%}
+
+<div class="snackbars" id="form-output-global"></div>
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+ <div class="pswp__bg"></div>
+ <div class="pswp__scroll-wrap">
+   <div class="pswp__container">
+     <div class="pswp__item"></div>
+     <div class="pswp__item"></div>
+     <div class="pswp__item"></div>
+   </div>
+   <div class="pswp__ui pswp__ui--hidden">
+     <div class="pswp__top-bar">
+       <div class="pswp__counter"></div>
+       <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+       <button class="pswp__button pswp__button--share" title="Share"></button>
+       <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+       <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+       <div class="pswp__preloader">
+         <div class="pswp__preloader__icn">
+           <div class="pswp__preloader__cut">
+             <div class="pswp__preloader__donut"></div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+       <div class="pswp__share-tooltip"></div>
+     </div>
+     <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+     <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+     <div class="pswp__caption">
+       <div class="pswp__caption__cent"></div>
+     </div>
+   </div>
+ </div>
+</div>
+
+{% endblock pagecontrol%}
+
+{% block endofpage%}
+
+{% endblock endofpage%}
+
+
+
+{% comment %} End Of Body {% endcomment %}
+
+<script src="{% static 'js/core.min.js' %}"></script>
+
+<script defer src="{% static 'js/script.js' %}"></script>
+<script>
+
+  window.setTimeout(function () {
+		$(".alert").fadeTo(500, 0).slideUp(500, function () {
+      $(this).remove();
+		});
+	}, 10000);
+
+
+
+</script>
+
+</html>
+
+{% block js %}
+
+{% endblock js %}

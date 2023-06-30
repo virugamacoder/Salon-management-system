@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %} Service {% endblock title %}
+{% load static %}
+
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+
+{% block body %}
+          <div id="wrapper">
+            <div class="page-title">
+              <div class="page-title-content">
+                <div class="shell">
+                  <p class="page-title-header">Services</p>
+                </div>
+              </div>
+            </div>
+
+            <section class="section-lg bg-periglacial-blue text-center">
+              <div class="shell">
+                <div class="range range-sm-center range-50">
+                  <div class="cell-xs-12">
+                    <h2>OUR SERVICES </h2>
+                    <div class="p text-width-medium">
+                      <p class="big">Barbershop offers world-class men's haircuts, beard grooming, and hot razor shaves. Here are just some of the services we are known for.</p>
+                    </div>
+                  </div>
+
+                  <div class="cell-xs-12">
+                    <div class="range range-30">
+                {% if service %}
+                
+                {% for i in service %}
+
+                      <div class="cell-xs-6 cell-md-3">
+                        <article class="card-service"><img class="card-service-image" src="/media/{{i.simg}}" alt="" width="70" height="62"/>
+                          <p class="card-service-title">{{i.sname}}</p>
+                          <p class="card-service-price"><small>&#8377; {{i.sprice}}</small>
+                          </p><a class="btn btn-sm card-service-control" href="/a/step1/">Book Now</a>
+                        </article>
+                      </div>
+              
+                  {% endfor %}
+
+               {% else %}
+               <article class="card-service">
+                <p class="card-service-title">Not Service Available</p>
+                
+              </article>
+               {% endif %}
+                  
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+{% endblock body%}
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+  </body>
+{% endblock endofpage%}
+
+
+

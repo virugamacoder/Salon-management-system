@@ -1,0 +1,200 @@
+{% extends 'main1.html' %}
+{% load static %}
+{% block head %}
+
+<!-- <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  theme meta
+  <meta name="theme-name" content="focus" />
+  <title>Base</title>{% block title %} {% endblock title %}</title>
+  ================= Favicon ================== -->
+  <!-- Standard -->
+  <!-- <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff"> -->
+  <!-- Retina iPad Touch Icon-->
+  <!-- <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff"> -->
+  <!-- Retina iPhone Touch Icon-->
+  <!-- <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff"> -->
+  <!-- Standard iPad Touch Icon-->
+  <!-- <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff"> -->
+  <!-- Standard iPhone Touch Icon-->
+  <!-- <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff"> -->
+  <!-- Styles -->
+  <!-- {% comment %} <link href="css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet"> {% endcomment %}
+  {% comment %} <link href="css/lib/chartist/chartist.min.css" rel="stylesheet">
+  <link href="css/lib/owl.carousel.min.css" rel="stylesheet" /> {% endcomment %}
+<link href="{% static 'cssadmin/lib/owl.carousel.min.css' %}" rel="stylesheet">
+
+<link href="{% static 'cssadmin/lib/themify-icons.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/menubar/sidebar.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/owl.theme.default.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/weather-icons.css' %}" rel="stylesheet">
+ <link href="{% static 'cssadmin/lib/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/helper.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style2.css' %}" rel="stylesheet">
+
+    --> 
+    {% endblock head %} 
+<!-- </head> -->
+{% block body %}
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 p-r-0 title-margin-right">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h1>Hello, <span>Manba Here</span></h1>
+                            <div id="main-content">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="stat-widget-one">
+                  <div class="stat-icon dib">
+                    <i class="fa-solid fa-calendar-check" style="color: #4377d0;"></i>
+                    {% comment %} <i class="ti-money color-success border-success"></i> {% endcomment %}
+                  </div>
+                  <div class="stat-content dib">
+                    <div class="stat-text">OnGoing Appointment</div>
+                    <div class="stat-digit">{{present}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="stat-widget-one">
+                  <div class="stat-icon dib">
+                    <i class="fa-sharp fa-solid fa-clock" style="color: #cf64dd;"></i>
+                    {% comment %} <i class="ti-user color-primary border-primary"></i> {% endcomment %}
+                  </div>
+                  <div class="stat-content dib">
+                    <div class="stat-text">Future Appointment</div>
+                    <div class="stat-digit">{{future}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="stat-widget-one">
+                  <div class="stat-icon dib">
+            <i class="fa-solid fa-server" style="color: #806d0f;"></i>
+                  </div>
+                  <div class="stat-content dib">
+                    <div class="stat-text">Total Service</div>
+
+                    <div class="stat-digit">{{totalservice}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="stat-widget-one">
+                  
+                  <div class="stat-icon dib">
+                        <i class="fa-solid fa-user-clock" style="color: #1c7e92;"></i>
+                   </div>
+                  <div class="stat-content dib">
+
+                    <div class="stat-text">Pending  Employee Leave</div>
+                    <div class="stat-digit">
+                     {{pendingleave}}</div>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="stat-widget-one">
+                 <div class="stat-icon dib">
+                        <i class="fa-solid fa-xmark" style="color: #df0c2b;"></i>
+                   </div>
+                  <div class="stat-content dib">
+
+                    <div class="stat-text"> Not Delivered Order</div>
+                    <div class="stat-digit">
+                     {{order}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card">
+                <div class="stat-widget-one">
+                <div class="stat-icon dib">
+                  <i class="fa-solid fa-layer-group" style="color: #7d8825;"></i>
+                       
+                   </div>
+                  <div class="stat-content dib">
+
+                    <div class="stat-text">Total Product</div>
+                    <div class="stat-digit">
+                     {{totalproduct}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            <!-- /# column -->
+          </div>
+          <!-- /# row -->
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card p-0">
+                <div class="stat-widget-three">
+                  <div class="stat-icon bg-primary">
+                    <i class="ti-user"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-digit">{{customer}}</div>
+                    <div class="stat-text"> Total Customer</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card p-0">
+                <div class="stat-widget-three">
+                  <div class="stat-icon bg-success">
+                    <i class="ti-user"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-digit">{{employee}}</div>
+                    <div class="stat-text">Total Employee</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+           
+          </div>
+          <!-- /# row -->
+        
+
+          <!-- <div class="row">
+            <div class="col-lg-12">
+              <div class="footer">
+                <p>2018 © Admin Board. -
+                  <a href="#">example.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+                        </div>
+                    </div>
+                </div>
+
+
+{% endblock body %}
+

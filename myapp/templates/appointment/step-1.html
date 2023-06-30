@@ -1,0 +1,201 @@
+{% extends 'basespecial.html' %}
+
+{% block title %}Step1 {% endblock title %}
+{% load static %}
+
+{% block body %}
+
+<script>
+
+</script>
+
+<body class="one-screen-page">
+    <div class="page">
+      <main class="page-content" id="perspective">
+        <div class="content-wrapper">
+          <div class="page-header page-header-perspective">
+            <div class="page-header-left"><a class="brand" href="/"><img src="{% static 'images/logo-default-dark-200x36.png' %}" alt="" width="200" height="36"/></a></div>
+            <div class="page-header-center">
+              <div class="step-progress">
+                <div class="step-progress-top"><span class="step-progress-number">1</span><span>of</span><span class="step-progress-number">3</span></div>
+                <div class="step-progress-bottom">
+                  <p class="step-progress-text">STEP</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-header-right">
+              <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+                <button class="perspective-menu-toggle"><span></span></button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="custom-progress">
+            <div class="custom-progress-body" style="width: 0;"></div>
+          </div>
+          <div id="wrapper">
+
+            <section class="section-xl bg-periglacial-blue one-screen-page-content text-center ">
+              <div class="shell">
+                <h2>CHOOSE a SERVICE</h2>
+             
+                 
+                <div class="p text-width-medium">
+                  <p class="big">On this page you can select a service that you need. Here are presented only the most popular barbering services we provide. If you require a personalized barbering service, please contact us.</p>
+                </div>
+
+                <div class="range range-50">
+
+                {% comment %} Strting Service {% endcomment %}
+                {% for i in service %}
+                {% comment %} <p>{{i}} </p> {% endcomment %}
+                    
+                  <div class="cell-xs-6 cell-md-3" name="service" value="s{{i.sid}}">
+
+                    <article class="card-service-option"><img class="card-service-option-image" src="/media/{{i.simg}}" alt="" width="70" height="62"/>
+                      
+                      <p class="card-service-option-title">{{i.sname}}  </p>
+                      
+                      <div class="card-service-option-panel">
+                      <p class="card-service-option-title">&#8377; {{i.sprice}}</p> 
+                        <p class="card-service-option-text">{{i.sdesc}}</p>
+
+                        {% comment %} <form action="/a/step2/" method="post">
+                          
+                          {% csrf_token %} {% endcomment %}
+                          
+                          <button class="btn btn-xs   card-service-option-control button" name="{{i.sid}}" 
+                          id="{{i.sid}}"
+                          value="{{i.sid}}">Choose</button>
+
+                        {% comment %} </form> {% endcomment %}
+                      
+                      </div>
+                    </article>
+                  </div>
+                  {% endfor %}
+                  {% comment %} ending Service {% endcomment %}
+              
+                </div>
+              </div>
+            </section>
+            
+            <section class="section-xl  bg-periglacial-blue text-center">
+              <div class="shell bg-periglacial-blue text-center">
+                <div class="group-xl group-middle">
+                  
+                  <form class="nextForm" method="post" action="/a/step2/">
+                    {% csrf_token %}
+                    <input type="hidden" id="SendService" name="SendService" value="{{SendService}}" >
+                  <input type="hidden" id="SendDate" name="SendDate" value="{{SendDate}}">
+                  <input type="hidden" id="SendTime" name="SendTime" value="{{SendTime}}">
+                  <input type="hidden" id="SendBarbar" name="SendBarbar" value="{{SendBarbar}}">
+
+                    <button id="nextBtn" class="btn btn-primary"  value="" > Next <i class="fa fa-arrow-right" aria-hidden="true"> </i></button>
+                  </form>
+  
+                </div>
+              </div>
+            </section>
+  
+{% endblock body%}
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+     
+  </body>
+{% endblock endofpage%}
+
+ 
+{% comment %} <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> {% endcomment %}
+  {% block js%}
+ {% comment %} $(this).css("background", "#fff"); {% endcomment %}
+
+  <script>
+  
+    $(document).ready(function() {
+
+      var b = document.querySelectorAll(".card-service-option .button");
+      console.log(b);
+              
+      var service=[];
+      
+      
+      var serviceStr = document.querySelector("#SendService").value;
+
+      const serviceList  = serviceStr.split(",");
+      
+        for(let i=0; i < serviceList.length; i++) 
+        {
+          id = serviceList[i];  
+          const BtnSelected = document.getElementById (id);
+        
+          if (BtnSelected != null) {
+           console.log(BtnSelected.innerHTML="Selected");   
+           service.push(BtnSelected.value);
+          }
+        } 
+/*Funcation Nextbtn */
+      function checknext()
+      {
+        if (service.length === 0){           
+          document.getElementById("nextBtn").disabled = true;
+        }else{
+          document.getElementById("nextBtn").disabled = false;
+        }
+      }
+      checknext();
+
+
+      $("#nextBtn").click(function(e){
+        document.querySelector("#SendService").value = service;
+      });
+      
+      $(b).click(function(e)
+      { 
+        select = document.querySelector(".card-service-option .button");
+
+        if($(this).html()=="Choose")
+        { 
+          $(this).html("Selected");
+          service.push($(this).val());
+        }
+        else
+        {
+          $(this).html("Choose");
+          var delValue = $(this).val();
+          service = jQuery.grep(service, function(value) {
+            return value != delValue;
+          });
+        }
+        
+        checknext();
+      });
+    });
+  </script>
+  
+  {% endblock js %}  
+
+  
+
+
+
+          {% comment %} document.querySelector(".servicebox").style.background = "#014d55";
+
+          document.querySelector(".servicebox p").style.color = "#fff"; {% endcomment %}
+
+             {% comment %} document.querySelector(".servicebox").style.background = "#f9f2f4"; {% endcomment %}

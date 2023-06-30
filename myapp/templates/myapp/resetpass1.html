@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %} Reset Password {% endblock title %}
+{% load static %}
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+{% block body %}
+
+        
+        <div id="wrapper">
+          
+          
+          <section class="section-xl bg-periglacial-blue text-center">
+            <div class="shell">
+              <div class="range range-sm-center">
+                <div class="cell-sm-10 cell-md-8 cell-lg-6">
+                  <div class="inset-sm-25">
+                    <h3>Reset Password</h3>
+                    <form class="rd-loginform" action="/resetpass1/" method="POST">{% csrf_token %}
+                      
+                      <div class="form-group">
+                        <label class="form-label-outside" for="login-email">E-mail</label>
+                        <input class="form-control" id="login-email" type="email" name="email"  data-constraints="@Email @Required" required>
+                      </div>
+                      
+                      <button class="btn btn-sm btn-primary btn-block btn-circle" type="submit" >Submit</button>
+                   
+                    </form>
+                     
+                    <div class="register-link text-center">
+                      <p>Back to <a href="/"> Home</a></p>
+                    </div>  
+                    
+                </div>
+              </div>
+            </div>
+          </section>
+     
+
+
+          
+         
+
+
+{% endblock body%}
+
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+  </body>
+{% endblock endofpage%}
+
+
+

@@ -1,0 +1,116 @@
+{% extends 'main1.html' %}
+{% block title %} Product Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+
+ <div class="content-wrap">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/service/manageservice/">Manage Service</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Update Service</li>
+        </ol>
+    </nav>
+    <div class="main">
+
+        <div class="content-wrap">
+
+
+            <div class="container-fluid">
+
+                <!-- <div class="row"> -->
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title-">
+                                <h1>Edit Service<span></span></h1>
+                            </div><br>
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% endfor %}
+                        </div>
+                    
+                                    <form action="/admin/service/supdate/{{service.sid}}/" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>{% csrf_token %}
+                                      {% comment %} <input type="hidden" value="{{product.pid}}" name="pid"> {% endcomment %}
+                                            <div class="form-group" >
+                                                <label >Service Name</label>
+                                                <input type="text" value="{{service.sname}}" class="form-control " name="sname" required>
+                                                <div class="invalid-feedback">
+                                                    Please Fill The Service name!
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlPrice">Price</label>
+                                                <input type="text" value="{{service.sprice}}" class="form-control" name="sprice" required>
+                                                <div class="invalid-feedback">
+                                                    Please Fill The Service Price!
+                                                </div>
+                                            </div>
+                                              <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Discription</label>
+                                                <textarea class="form-control" id="pinfo" rows="3" name="sdesc" required>{{service.sdesc}}</textarea>
+                                               <div class="invalid-feedback">
+                                                    Please Fill The Service Description!
+                                                </div>
+                                            </div>
+                        
+                                             
+                                           
+                                              <div class="form-group ">
+                                              
+                                                    <label for="Imgae">current</label>
+                                                    <img src="/media/{{service.simg}}" alt="{{service.simg}}" width="100" height="100"> {{service.simg}}
+                                                    <br><br>
+                                              
+                                                <label for="Imgae">ChangeImage</label>
+                                             
+                                                <input type="file" class="form-control-file" id="simg" name="simg"  value="{{service.simg}}"  />  
+                                               
+                                              
+                                             </div> 
+                                            <button type="submit" class="btn btn-primary" >Save</button>
+                                        </form>
+                                    <!-- </div>
+                                </div>
+                            </div>
+                        </div> -->
+                       
+                       
+                    </div>
+                </div>
+             </div>
+        </div><!-- content warp -->
+    </div><!-- main -->
+
+</div><!-- content warp -->
+    <script>
+     (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+       
+    </script>         
+
+{% endblock body %}

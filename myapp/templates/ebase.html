@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- theme meta -->
+  <meta name="theme-name" content="focus" />
+  <title> Main Dashboard</title>
+  <!-- ================= Favicon ================== -->
+  <!-- Standard -->
+  <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
+  <!-- Retina iPad Touch Icon-->
+  <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+  <!-- Retina iPhone Touch Icon-->
+  <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+  <!-- Standard iPad Touch Icon-->
+  <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+  <!-- Standard iPhone Touch Icon-->
+  <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+  <!-- Styles -->
+  <link href="{% static 'cssadmin/lib/owl.carousel.min.css' %}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script src="https://kit.fontawesome.com/395c023056.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link href="{% static 'cssadmin/lib/themify-icons.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/menubar/sidebar.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/owl.theme.default.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/weather-icons.css' %}" rel="stylesheet">
+ <link href="{% static 'cssadmin/lib/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/helper.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style2.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/bootstap.css' %}" rel="stylesheet">
+<style>
+      .alert{
+        position:fixed; 
+        top: 50px; 
+        right: 10px; 
+        width: 40%;
+        z-index:9999; 
+        border-radius:5px;
+    }
+    
+    .alert-danger{
+      color:white;
+    }
+    </style>
+
+  {% block head %}
+
+    {% endblock head %} 
+</head>
+
+<body class="pace-done ">
+{% load static %}
+  <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+    <div class="nano">
+      <div class="nano-content">
+        <ul>
+          <div class="logo"><a href="/">
+              <!-- <img src="images/logo.png" alt="" /> --><span>Salon</span></a></div>
+          <li class="label">EMPLOYEE  DASHBOARD</li>
+          <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard 
+          </li>
+
+
+          <li class="label">Apps</li>
+
+          <li><a href="/employee/eprofile/"><i class="ti-user"></i> Profile</a></li>
+
+
+
+          {% comment %} <li><a href="/admin/customer/managecustomer/"><i class="ti-user"></i>Manage Address</a></li> {% endcomment %}
+
+          <li class="label">Appointment</li>
+
+          <li><a href="/employee/aview/"><i class="fa-solid fa-calendar-check"></i> View Appointment</a></li>
+
+          <li class="label">Leave</li>
+
+          <li><a href="/employee/manageleave/"><i class="fa-solid fa-user-clock"></i> Manage leave</a></li>
+         
+          <li class="label">Logout</li>
+
+          <li><a href="/logout/"> <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- /# sidebar -->
+
+  <div class="header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="float-left">
+            
+          </div>
+          <div class="float-right">
+            
+
+          <div class="float-right">
+           
+            <div class="dropdown" style="margin-right:70px;">
+              <button class="btn btn-secondary dropdown-toggle" style="width:120px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-user" ></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              
+                <a class="dropdown-item" href="/employee/eprofile/"> <i class="fa-solid fa-circle-user"></i> My Account </a> 
+                <a class="dropdown-item" href="/employee/aview/" ><i class="fa-solid fa-calendar-check"></i> Appointment</a> 
+                <a class="dropdown-item" href="/employee/manageleave/"> <i class="fa-solid fa-user-clock"></i> Leave </a> 
+                <a class="dropdown-item" href="/logout/"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+               
+              </div>
+            </div>
+
+
+      </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% comment %} <div class="content-wrap">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/dashboard/">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">ManageProduct</li>
+        </ol>
+    </nav>
+  </div> {% endcomment %}
+ {% block body %}{% endblock body %}
+ 
+  <script src="{% static 'jsadmin/bootstrap.min.js' %} "></script>
+    <script src="{% static 'jsadmin/popper.js' %} "></script>
+
+    <script src="{% static 'jsadmin/jquery.js' %} "></script>
+  <script src="{% static 'jsadmin/lib/preloader/pace.min.js' %} "></script>
+      <!-- sidebar -->
+      {% comment %} <script src="{% static 'jsadmin/lib/bootstrap.min.js' %} "></script> {% endcomment %}
+    {% comment %} 
+    <script src="{% static 'jsadmin/scripts.js' %} "></script>   {% endcomment %}
+    <script src="{% static 'js/core.min.js' %} "></script>
+    <script src="{% static 'js/script.js' %} "></script>
+    <script src="{% static ' jsadmin/lib/jquery.nanoscroller.min.js' %} "></script>
+   
+   {% comment %} <script src="{% static 'jsadmin/lib/sparklinechart/sparkline.init.js' %} "></script>   {% endcomment %}
+   {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> {% endcomment %}
+      <script src="{% static 'jsadmin/lib/menubar/sidebar.js' %} "></script>
+    <!-- bootstrap -->
+   
+    <script>
+
+      window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+          $(this).remove();
+        });
+      }, 10000);
+    
+    
+    </script>
+
+   
+   
+ 
+{% block js%} {% endblock js %}
+
+</body>
+
+</html>

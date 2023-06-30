@@ -1,0 +1,161 @@
+{% extends 'main1.html' %}
+{% block title %} Product Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/emp/manageemp/">Manage Employee</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Employee</li>
+        </ol>
+    </nav>
+    <div class="main">
+
+        <div class="content-wrap">
+
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title-">
+                                <h1> Add Employee<span></span></h1>
+                            </div><br>
+
+                        </div>
+
+                        <form action="/admin/emp/empadd/" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>{% csrf_token %}
+                         <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" id="exampleFormControlInputprice" name="email" required>
+                                 <div class="invalid-feedback">
+                                    Please enter valid email Address ex abc@gmail.com
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" id="exampleFormControlInputprice" name="password" minlength="8"  required>
+                                <div class="invalid-feedback">
+                                    Please enter valid password(contains 8 charater)
+                                </div>
+                            </div>
+                              
+                             <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input type="password" class="form-control" id="exampleFormControlInputprice" name="password" minlength="8"  required >
+                                <div class="invalid-feedback">
+                                    Please enter valid password
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" id="exampleFormControlInputname" name="first_name" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid first name
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" id="exampleFormControlInputname" name="last_name" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid last name
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <br>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="M" style="width: 18px; height: 18px; background-color: #014D55;" required>
+                                    <label class="form-check-label" for="male">
+                                        Male
+                                    </label>
+                                   
+                            </div>
+
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="F" style="width: 18px; height: 18px; background-color: #014D55;" required>
+                                    <label class="form-check-label" for="female">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label>Infromation : </label>
+                                <input type="text" class="form-control" id="exampleFormControlInputname" name="info" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid Infromation
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Skill : </label>
+                                <input type="text" class="form-control" id="exampleFormControlInputname" name="skill" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid Skill
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Contact No</label>
+                                <input type="phone" class="form-control" id="exampleFormControlInputprice"
+                                    name="phone" minlength="10" required>
+                                 <div class="invalid-feedback">
+                                     Please enter 10 digit phone number
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="Imgae">Image</label>
+                                <input type="file" class="form-control-file" id="uimg" name="uimg" required>
+                               <div class="invalid-feedback">
+                                     Please Select Image
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary fire" id="fire">Save</button>
+                        </form>
+                        
+
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- content warp -->
+    </div><!-- main -->
+
+</div><!-- content warp -->
+
+
+    <script src="{% static 'jsadmin/bootstrap.min.js' %} "></script>
+<script src="{% static 'jsadmin/popper.js' %} "></script>
+
+<script src="{% static 'jsadmin/jquery.js' %} "></script>
+
+<script>
+     (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+
+{% endblock body %}

@@ -1,0 +1,215 @@
+{% extends 'main1.html' %}
+{% block title %}Order Display{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+   
+    <div class="main">
+       
+        <div class="content-wrap">
+            <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/order/manageorder/">Manage Order</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ordar View</li>
+        </ol>
+    </nav>
+ 
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-10 p-r-5 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Manage Order<span></span></h1>
+                            </div><br>
+                      
+                                
+                      
+                          {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div><br><br>
+                          {% endfor %}
+                        
+
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Full Details Of Order</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    {% if orderitem %}
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>ProductImage</th>
+                                                <th>ProductName</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in orderitem %}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                <td><img src="/media/{{i.pid.pimg}}/" alt="" width="100" height="100" /></td>
+                                                <td>{{i.pid.pname}}</td>
+                                                <td>{{i.quantity}}</td>
+                                                <td>{{i.price}}</td>
+                                                
+                                                {% if i.quantity >= i.pid.pstock %} 
+                <input type="hidden" id="quantity" value="{{i.pid.pname}}">
+                                                {% endif %}
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                     <p> No such Any Orderitem for order<p>
+                                    {% endif %}
+                                </div>
+                                <hr><br>
+                                 <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Customer Name : </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{order.cid.first_name}} {{order.cid.last_name}}</label>
+
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Email Address : </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{order.cid.email}}</label>
+
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Address Name : </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{order.aid.address}}, {{order.aid.city}}, {{order.aid.state}}, {{order.aid.postcode}} </label>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label">Total Amount : </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{order.total_amount}}</label>
+
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Order Date : </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{order.order_place_date}}</label>
+
+                                        </div>
+                                    </div>
+
+                                      <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Payment Mode : </label>
+                                        <div class="col-sm-6">
+                                        <label for="staticEmai">{{order.payment_mode}}</label>
+
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+
+                                    <form id="save-form" action="/admin/order/vieworder/{{order.oid}}/" method="POST"  >{% csrf_token %}
+
+                                    {% if order.delivered_status == "NO" %}
+
+                                    <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Delivery Stutas : </label>
+                                        <div class="col-sm-6">
+                        
+                                        <br>
+                                        <div class="form-check-inline">
+                                    <input id="radio-delivery" class="form-check-input" type="radio" name="delivered_status" style="width: 18px; height: 18px; background-color: #014D55;" value="YES" {% if order.delivered_status == 'YES' %}checked {% endif %}>
+                                      <label class="form-check-label" for="male"> 
+                                    Deliver
+                                    </label>
+                                   
+                                </div>
+                                <div class="form-check-inline">
+                                    <input id="radio-deliveryno" class="form-check-input" type="radio" name="delivered_status" style="width: 18px; height: 18px; background-color: #014D55;" value="NO" {% if order.delivered_status == 'NO' %}checked {% endif %}>
+                                    <label class="form-check-label" for="female">
+                                        Not Deliver
+                                    </label>
+                                </div>
+
+                                        </div>
+                                    </div>
+                                  
+
+                                    
+                            <button type="submit" class="btn btn-primary " id="fire" onclick="checkCondition(event)">Save</button>
+
+                            {% else %}
+
+                            <div class="form-group row">
+                             <label for="staticEmail" class="col-sm-4 col-form-label text-align-center">Delivary Status : </label>
+                             <div class="col-sm-6">
+                             <label for="staticEmai"> Delivary </label>
+
+                             </div>
+                         </div>
+                            {% endif %} 
+
+                            </form>
+                              
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+  
+
+    {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             {% endcomment %}
+<script>
+
+    function checkCondition(event) {
+        // prevent the form from submitting
+        event.preventDefault();
+        
+        // get the form element
+        var form = document.getElementById("save-form");
+        var elements = document.querySelectorAll("#quantity");
+        var msg = "Product Stock Is Customer Order Quantity Requiment Not Avalibale , Product = "
+        for (var i = 0; i < elements.length; i++) {
+            msg = msg + " | " + elements[i].value;
+        }
+
+        var delivery = document.getElementById("radio-delivery");
+        var deliveryno = document.getElementById("radio-deliveryno");
+        if(delivery.checked){
+
+        if(elements.length>0){
+          alert(msg);  
+        } else {
+          form.submit();
+        }
+      }
+      else if(deliveryno)
+      {
+        form.submit();
+      }  
+}
+ </script>
+
+{% endblock body %}

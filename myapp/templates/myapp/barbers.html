@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %} Barbers {% endblock title %}
+{% load static %}
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+{% block body %}
+        <div id="wrapper">
+          <div class="page-title">
+            <div class="page-title-content">
+              <div class="shell">
+                <p class="page-title-header">Our Barbers</p>
+              </div>
+            </div>
+          </div>
+          <section class="section-xl bg-periglacial-blue text-center">
+            <div class="shell">
+              <h2>OUR BARBERS</h2>
+              <div class="p text-width-medium">
+
+                <p class="big">We employ only highly qualified barbers who are not just professionals, but also enjoy maintaining the atmosphere of a classic barbershop.</p>
+              </div>
+            </div>
+
+            <div class="shell">
+              <div class="range range-30">
+
+            {% comment %} Strat {% endcomment %}
+            {% if barbar %}
+            {% for i in barbar %} 
+
+                <div class="cell-sm-6 cell-md-4 height-fill">
+                  <div class="thumbnail-card"><img class="thumbnail-card-image" src="/media/{{i.emp.uimg}}" alt="" width="370" height="310"/>
+                    <div class="thumbnail-card-body">
+                      <p class="thumbnail-card-header" data-toggle="modal" data-target="#modalWindow">{{i.emp.first_name}} {{i.emp.last_name}} </p>
+                      
+                       
+                      <div class="thumbnail-card-text">
+                        <p> {{i.infromation}} 
+                        </p>
+                      </div>
+                      <ul class="inline-list inline-list-md">
+                        <li><a class="icon icon-xs link-gray-base fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-xs link-gray-base fa-twitter" href="#"></a></li>
+                        <li><a class="icon icon-xs link-gray-base fa-linkedin" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {% endfor %}
+
+                {% else %}
+                <article class="card-service">
+                 <p class="card-service-title">Not Barbars Available</p>
+                 
+               </article>
+                {% endif %}
+                   
+                
+              </div>
+            </div>
+          </section>
+
+
+{% endblock body%}
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+  </body>
+{% endblock endofpage%}
+
+
+

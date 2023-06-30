@@ -1,0 +1,241 @@
+{% extends 'basespecial.html' %}
+
+
+{% block title %} Step3 {% endblock title %}
+{% load static %}
+
+{% block body %}
+
+<body class="one-screen-page">
+    <div class="page">
+      <main class="page-content" id="perspective">
+        <div class="content-wrapper">
+          <div class="page-header page-header-perspective">
+            <div class="page-header-left"><a class="brand" href="/"><img src="{% static 'images/logo-default-dark-200x36.png' %}" alt="" width="200" height="36"/></a></div>
+            <div class="page-header-center">
+              <div class="step-progress">
+                <div class="step-progress-top"><span class="step-progress-number">3</span><span>of</span><span class="step-progress-number">3</span></div>
+                <div class="step-progress-bottom">
+                  <p class="step-progress-text">STEPs</p>
+                </div>
+              </div>
+            </div>
+            <div class="page-header-right">
+              <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+                <button class="perspective-menu-toggle"><span></span></button>
+              </div>
+            </div>
+          </div>
+          <div class="custom-progress">
+            <div class="custom-progress-body" style="width: 33.33%;"></div>
+          </div>
+          <div id="wrapper">
+            <section class="section-xs bg-periglacial-blue one-screen-page-content text-center">
+           
+
+              <div class="shell">
+                <h2>CHOOSE a BARBER</h2>
+            
+                 
+                <div class="p text-width-medium">
+                  <p class="big">Barbershop offers professional services of certified barbers with years of experience. On this page you can choose a preferred barber in a few clicks.</p>
+                </div>
+
+                <div class="range range-lg-center">
+                  <div class="cell-lg-10">
+                    <div class="range range-sm-center range-md-left range-30">
+                {% comment %} Starting A Barbar {% endcomment %}
+                      
+                {% for i in barbar %} 
+                      <div class="cell-sm-8 cell-md-6">
+                        <div class="thumbnail-option">
+                          <div class="thumbnail-option-left"><img src="/media/{{i.uimg}}" alt="" width="170" height="180"/>
+                          </div>
+                          <div class="thumbnail-option-body">
+                            <div class="thumbnail-option-title">{{i.first_name}} {{i.last_name}} </div>
+                            <ul class="thumbnail-option-list">
+                              <li class="active">mo</li>
+                              <li >tu</li>
+                              <li class="active">we</li>
+                              <li class="active">th</li>
+                              <li class="active">fr</li>
+                              <li class="active">st</li>
+                              <li class="active">sn</li>
+                            </ul>
+                       
+
+                            <div class="thumbnail-option-panel">
+                              <button class="btn btn-xs btn-primary btn-circle ChooseBarbar" id="{{i.id}}" name="ChooseBarbar" value="{{i.id}}">Choose 
+                              </button>
+                            </div>
+
+                                           
+                        </div>
+                        </div>
+                      </div> 
+                      {% endfor %}
+                {% comment %} Ending Barbar {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+          <section class="section-xl bg-periglacial-blue text-center">
+            <div class="shell">
+              <div class="group-xl group-middle">
+                
+                
+                <form method="post" action="/a/step2/">
+                  {% csrf_token %}         
+                  <input type="hidden" name="SendService" value="{{SendService}}" >
+                  <input type="hidden" name="SendDate" value="{{SendDate}}" >
+                  <input type="hidden" name="SendTime" value="{{SendTime}}">
+                  
+                  <input type="hidden" id="SendBarbar" name="SendBarbar" value="{{SendBarbar}}">
+
+                  <button class="btn btn-primary"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Previous</button>
+                </form>
+              
+                <form class="nextForm" method="post" action="/a/step4/">
+                  {% csrf_token %}
+                  <input type="hidden" name="SendService" value="{{SendService}}">
+                  <input type="hidden" id="SendDate" name="SendDate" value="{{SendDate}}">
+                  <input type="hidden" id="SendTime" name="SendTime" value="{{SendTime}}">
+                  
+                  <input type="hidden" id="SendBarbar" name="SendBarbar" value="{{SendBarbar}}">
+                  
+                  <button id="nextBtn" class="btn btn-primary"> Next <i class="fa fa-arrow-right" aria-hidden="true"> </i></button>
+                  
+                </form>
+
+              </div>
+            </div>
+          </section>            
+
+{% endblock body%}
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+     
+  </body>
+{% endblock endofpage%}
+
+{% block js%}
+ {% comment %} $(this).css("background", "#fff"); {% endcomment %}
+ <script>
+  
+  $(document).ready(function() {
+
+/* checknext btn */
+    function checknext()
+    {
+    CheckNextBarbar = document.querySelectorAll("#SendBarbar");
+
+    for(i=0;i<CheckNextBarbar.length;i++){
+    
+      if(CheckNextBarbar[i].value == '')
+      {           
+        document.getElementById("nextBtn").disabled = true;
+        console.log("disabled");
+      }
+      else
+      {
+        document.getElementById("nextBtn").disabled = false;
+        console.log("not disabled");
+      } 
+    }
+    }
+    
+/* Window on Load function */
+    $( window ).load(function() {
+    var BarabrSelected = document.querySelector("#SendBarbar").value;
+    var b = document.getElementById(BarabrSelected);
+   
+    if(b != null) {
+      b.click();
+      console.log("B2 : " + b);
+    }
+    checknext();
+  
+    });
+/* end Window on Load function  */
+
+
+    var btn = document.querySelectorAll(".ChooseBarbar");
+ 
+    var barbar;
+
+    $("#nextBtn").click(function(e){
+      var SendBarbar = document.querySelectorAll("#SendBarbar").value;
+
+      for(j=0;j<SendBarbar.length;j++){
+        SendBarbar[j] = barbar;
+        console.log("j :  " +   SendBarbar[j]);
+      }
+    });
+
+    
+    $(btn).click(function(e)
+    { 
+   
+      const btnlist = document.querySelectorAll(".ChooseBarbar");
+     
+      if($(this).html()=="Selected"){
+        $(this).html("Choose");
+        barbar = "";
+
+        var SendBarbar = document.querySelectorAll("#SendBarbar");
+
+        for(j=0;j<SendBarbar.length;j++){  
+          SendBarbar[j].value = barbar;
+          console.log(SendBarbar[j].value);
+        }
+        
+      }
+      else
+      {
+      for (let i = 0; i < btnlist.length; i++) 
+      {
+        btnlist[i].innerHTML = "Choose";  
+      }
+
+      $(this).html("Selected");
+
+      barbar = this.value;
+      console.log("barbar = " + barbar);
+
+      var SendBarbar = document.querySelectorAll("#SendBarbar");
+
+      for(j=0;j<SendBarbar.length;j++){  
+        SendBarbar[j].value = barbar;
+        console.log(SendBarbar[j].value);
+      }
+
+    }
+    checknext();
+    
+    });
+
+    
+      
+  });
+</script>
+
+
+{% endblock js%}
+

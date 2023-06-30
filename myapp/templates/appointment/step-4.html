@@ -1,0 +1,130 @@
+{% extends 'basespecial.html' %}
+
+
+{% block title %} Step4 {% endblock title %}
+{% load static %}
+
+{% block body %} 
+<body class="one-screen-page">
+  <div class="page">
+    <main class="page-content" id="perspective">
+      <div class="content-wrapper">
+        <div class="page-header page-header-perspective">
+          <div class="page-header-left"><a class="brand" href="/"><img src="{% static  'images/'%}logo-default-dark-200x36.png" alt="" width="200" height="36"/></a></div>
+          <div class="page-header-center">
+            <div class="step-progress">
+              <p class="step-progress-caption">Almost done</p>
+            </div>
+          </div>
+          <div class="page-header-right">
+            <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+              <button class="perspective-menu-toggle"><span></span></button>
+            </div>
+          </div>
+        </div>
+        <div class="custom-progress">
+          <div class="custom-progress-body" style="width: 100%;"></div>
+        </div>
+        <div id="wrapper">
+          <section class="section-xs bg-periglacial-blue one-screen-page-content text-center">
+            
+            <div class="shell">
+              <h2>ONE MORE STEP!</h2>
+
+               
+              <div class="p text-width-medium">
+                <p class="big">To complete your appointment, please review all details described below.</p>
+              </div>
+              <div class="box-contacts box-contacts-vertical box-contacts-vertical-small box-wrap-content-interactive block-centered">
+                <div class="box-contacts-col">
+                  <div class="box-contacts-block">
+                    <h3>Service:</h3>
+
+                    {% for s in Service %}
+                     <h6> <li>{{s.sname}} - &#8377; {{s.sprice}}</li> </h6>
+                     {% endfor %}
+                  
+                  </div>
+                  <div class="box-contacts-block">
+                    <h3>Barber:</h3>
+                     {% for b in Barbar %}
+                        <h6><p>{{b.first_name}}  {{ b.last_name }}</p></h6>
+                      {% endfor %}
+                  </div>
+                  <div class="box-contacts-block">
+                    <h3>Date:</h3>
+                    <h6><p>{{SendDate}} ({{SendTime}})</p></h6>
+                  </div>
+
+                  <div class="box-contacts-block">
+                    <h3>Subtotal: </h3>
+                    <h6><p>&#8377; {{total}}</p></h6>
+                  </div>
+                </div>
+                <div class="box-contacts-col box-contacts-right">
+                  <div class="box-contacts-block">
+
+                    <form action="/a/book/" method="post">
+                    {% csrf_token %}
+
+                      <div class="form-group">
+                        <label class="form-label-outside" for="contact-phone">Enter Mobile Number</label>
+                        <input class="form-control" id="contact-phone" type="text" name="SendMno"  maxlength="10" minlength="10" required>
+                      </div>
+
+                  <input type="hidden" name="SendService" value="{{SendService}}">
+                  <input type="hidden" id="SendDate" name="SendDate" value="{{SendDate}}">
+                  <input type="hidden" id="SendTime" name="SendTime" value="{{SendTime}}">
+                  <input type="hidden" id="SendBarbar" name="SendBarbar" value="{{SendBarbar}}">
+
+                      <button name="done" value="ok" class="btn btn-sm btn-primary btn-block btn-circle" type="submit">Book now</button>
+                    </form>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="section-xl bg-periglacial-blue text-center">
+            <div class="shell">
+              <div class="group-xl group-middle">
+                
+                
+                <form method="post" action="/a/step3/">
+                  {% csrf_token %}  
+
+                  <input type="hidden" name="SendService" value="{{SendService}}" >
+
+                  <input type="hidden" id="SendDate" name="SendDate" value="{{SendDate}}">
+                  <input type="hidden" id="SendTime" name="SendTime" value="{{SendTime}}">
+                  <input type="hidden" id="SendBarbar" name="SendBarbar" value="{{SendBarbar}}">
+                       
+
+                  <button class="btn btn-primary"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Previous</button>
+
+                </form>
+              
+                
+              </div>
+            </div>
+          </section>
+{% endblock body %}
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+     
+  </body>
+{% endblock endofpage%}

@@ -1,0 +1,385 @@
+{% extends 'base.html' %}
+
+{% block title %} SignUp {% endblock title %}
+{% load static %}
+
+{% block head %}
+<link href="{% static 'cssadmin/lib/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/themify-icons.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/helper.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style2.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+{% endblock head %}
+
+{% block body %}
+
+<body>
+    
+    <div class="page">
+        <main class="page-content" id="perspective">
+            <div class="content-wrapper">
+                <div class="page-header page-header-perspective">
+                    <div class="page-header-left"><a class="brand" href="index.html"><img
+                                src="{% static 'images/logo-default-dark-200x36.png' %}" alt="" width="200"
+                                height="36" /></a></div>
+                    <div class="page-header-center">
+                        <div class="step-progress">
+                            <div class="step-progress-top"><span
+                                    class="step-progress-number">1</span><span>of</span><span
+                                    class="step-progress-number">3</span></div>
+                            <div class="step-progress-bottom">
+                                <p class="step-progress-text">STEPs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-header-right">
+                        <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle"
+                            data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+                            <button class="perspective-menu-toggle"><span></span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-progress">
+                    <div class="custom-progress-body" style="width: 0;"></div>
+                </div>
+
+                <!-- <section class="section-xl bg-periglacial-blue one-screen-page-content text-center "> -->
+                <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+                    <div class="nano">
+                        <div class="nano-content">
+                            <ul>
+                                <div class="logo"><a href="index.html">
+                                        <!-- <img src="images/logo.png" alt="" /> --><span>Salon</span></a></div>
+                                <li class="label">ADMIN DASHBOARD</li>
+                                <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard <span
+                                            class="badge badge-primary">2</span>
+                                        <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                                    <ul>
+                                        <li><a href="index.html">Dashboard 1</a></li>
+                                        <li><a href="index.html">Dashboard 2</a></li>
+                                    </ul>
+                                </li>
+                
+                
+                                <li class="label">Apps</li>
+                
+                                <li><a href="app-profile.html"><i class="ti-user"></i> Profile</a></li>
+                
+                
+                
+                                <li><a href="#"><i class="ti-user"></i>Manage Customer</a></li>
+                
+                                <li class="label">Appointment</li>
+                
+                                <li><a href="#"><i class="ti-user"></i> Manage Appointment</a></li>
+                
+                                <li><a href="#"><i class="ti-user"></i> Manage Service</a></li>
+                
+                                <li><a href="app-event-calender.html"><i class="ti-calendar"></i> Calender </a></li>
+                
+                
+                                <li class="label">Ecommerce</li>
+                
+                                <li><a href="#"><i class="ti-user"></i> Manage Product</a></li>
+                
+                                <li class="label">Employee</li>
+                
+                                <li><a href="#"><i class="ti-user"></i> Manage Employee</a></li>
+                                <li><a href="#"><i class="ti-user"></i> Manage Employee Leave</a></li>
+                
+                                <!-- <li><a class="sidebar-sub-toggle"><i class="ti-files"></i> Invoice <span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                              <li><a href="invoice.html">Basic</a></li>
+                              <li><a href="invoice-editable.html">Editable</a></li>
+                
+                            </ul>
+                          </li> -->
+                
+                
+                
+                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="page-header page-header-perspective">
+                    <div class="page-header-left"><a class="brand" href="index.html"><img
+                                src="{% static 'images/logo-default-dark-200x36.png' %}" alt="" width="200"
+                                height="36" /></a></div>
+                    <div class="page-header-center">
+                        <div class="step-progress">
+                            <div class="step-progress-top"><span
+                                    class="step-progress-number">1</span><span>of</span><span
+                                    class="step-progress-number">3</span></div>
+                            <div class="step-progress-bottom">
+                                <p class="step-progress-text">STEPs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-header-right">
+                        <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle"
+                            data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+                            <button class="perspective-menu-toggle"><span></span></button>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- </section> -->
+
+                <section class="section-xl  bg-periglacial-blue text-center">
+
+                </section>
+
+                <!-- Page Footer-->
+                <footer class="page-footer page-footer-default">
+                    <div class="shell">
+                        <div class="range range-xs-center">
+                            <div class="cell-lg-10"><a class="brand" href="index.html"><img
+                                        src="{% static 'images/logo-default-dark-200x36.png' %}" alt="" width="200"
+                                        height="36" /></a>
+                                <div class="text-highlighted-wrap">
+                                    <p class="text-highlighted">Barbershop is a No.1 place to have a men’s haircut in
+                                        San Francisco. Here you can get luxury barber experience at a reasonable price.
+                                    </p>
+                                </div>
+                                <ul class="footer-navigation footer-navigation-horizontal">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="services.html">Services</a></li>
+                                    <li><a href="blog.html">Blog</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="contacts-1.html">Contacts</a></li>
+                                </ul>
+                                <div class="divider divider-small divider-light block-centered"></div>
+                                <ul class="inline-list inline-list-md">
+                                    <li><a class="icon icon-xs link-gray-light fa-facebook" href="#"></a></li>
+                                    <li><a class="icon icon-xs link-gray-light fa-twitter" href="#"></a></li>
+                                    <li><a class="icon icon-xs link-gray-light fa-youtube" href="#"></a></li>
+                                    <li><a class="icon icon-xs link-gray-light fa-linkedin" href="#"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <div id="perspective-content-overlay"></div>
+    </div>
+    <!-- RD Navbar-->
+    <div class="rd-navbar-wrap">
+        <nav class="rd-navbar rd-navbar-default" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
+            data-sm-device-layout="rd-navbar-fixed" data-md-layout="rd-navbar-sidebar"
+            data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed"
+            data-lg-layout="rd-navbar-sidebar" data-stick-up-clone="false">
+            <div class="rd-navbar-inner">
+                <div class="rd-navbar-panel">
+                    <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                    <div class="rd-navbar-brand"><a class="brand-name" href="index.html"><img
+                                src="{% static 'images/logo-default-dark-200x36.png' %}" alt="" width="200"
+                                height="36" /></a></div>
+                </div>
+                <div class="rd-navbar-nav-wrap">
+                    <div class="rd-navbar-nav-inner">
+                        <ul class="rd-navbar-nav">
+                            <li class="active"><a href="index.html">Home</a>
+                                <ul class="rd-navbar-megamenu">
+                                    <li>
+                                        <p class="rd-megamenu-header"><a href="index.html">Home</a></p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="home-variant-2.html">Home variant 2</a></li>
+                                            <li><a href="home-variant-3.html">Home variant 3</a></li>
+                                        </ul>
+                                        <p class="rd-megamenu-header"><a href="about.html">About</a></p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="barbers.html">barbers</a></li>
+                                            <li><a href="testimonials.html">Testimonials</a></li>
+                                            <li><a href="faq.html">FAQ</a></li>
+                                        </ul>
+                                        <p class="rd-megamenu-header">Contact Us</p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="contacts-1.html">Contacts 1</a></li>
+                                            <li><a href="contacts-2.html">Contacts 2</a></li>
+                                        </ul>
+                                        <p class="rd-megamenu-header"><a href="services.html">Services</a></p>
+                                    </li>
+                                    <li>
+                                        <p class="rd-megamenu-header">Book</p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="step-1.html">Step 1</a></li>
+                                            <li><a href="step-2.html">Step 2</a></li>
+                                            <li><a href="step-3.html">Step 3</a></li>
+                                            <li><a href="step-4.html">Step 4</a></li>
+                                            <li><a href="finish.html">Finish</a></li>
+                                        </ul>
+                                        <p class="rd-megamenu-header">Blog</p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="blog.html">Blog</a></li>
+                                            <li><a href="single-post.html">Single post</a></li>
+                                        </ul>
+                                        <p class="rd-megamenu-header"><a href="shop.html">Shop</a></p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="single-product.html">Single product</a></li>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="rd-megamenu-header">Pages</p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="404-page.html">404 page</a></li>
+                                            <li><a href="503-page.html">503 page</a></li>
+                                            <li><a href="maintenance.html">Maintenance</a></li>
+                                            <li><a href="coming-soon.html">Coming soon</a></li>
+                                            <li><a href="privacy-policy.html">Privacy policy</a></li>
+                                        </ul>
+                                        <p class="rd-megamenu-header">Layouts</p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="header-perspective.html">Header perspective</a></li>
+                                            <li><a href="header-transparent.html">Header transparent</a></li>
+                                            <li><a href="header-fullwidth.html">Header fullwidth</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p class="rd-megamenu-header">Layouts</p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="footer-default.html">Footer default</a></li>
+                                            <li><a href="footer-variant-2.html">Footer variant 2</a></li>
+                                            <li><a href="footer-variant-3.html">Footer variant 3</a></li>
+                                        </ul>
+                                        <p class="rd-megamenu-header">Additional</p>
+                                        <ul class="rd-megamenu-list">
+                                            <li><a href="buttons.html">Buttons</a></li>
+                                            <li><a href="forms.html">Forms</a></li>
+                                            <li><a href="grid.html">Grid</a></li>
+                                            <li><a href="progress-bars.html">Progress Bars</a></li>
+                                            <li><a href="tables.html">Tables</a></li>
+                                            <li><a href="tabs-and-accordions.html">Tabs and Accordions</a></li>
+                                            <li><a href="typography.html">Typography</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="about.html">About</a>
+                                <ul class="rd-navbar-dropdown">
+                                    <li><a href="barbers.html">barbers</a>
+                                    </li>
+                                    <li><a href="testimonials.html">Testimonials</a>
+                                    </li>
+                                    <li><a href="faq.html">FAQ</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="services.html">Services</a>
+                            </li>
+                            <li><a href="blog.html">Blog</a>
+                                <ul class="rd-navbar-dropdown">
+                                    <li><a href="single-post.html">Single post</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="shop.html">Shop</a>
+                                <ul class="rd-navbar-dropdown">
+                                    <li><a href="single-product.html">Single product</a>
+                                    </li>
+                                    <li><a href="cart.html">Cart</a>
+                                    </li>
+                                    <li><a href="checkout.html">Checkout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Contacts</a>
+                                <ul class="rd-navbar-dropdown">
+                                    <li><a href="contacts-1.html">Contacts 1</a>
+                                    </li>
+                                    <li><a href="contacts-2.html">Contacts 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="rd-navbar-nav-footer">
+                            <ul class="inline-list inline-list-md">
+                                <li><a class="icon icon-xs link-gray-base fa-facebook" href="#"></a></li>
+                                <li><a class="icon icon-xs link-gray-base fa-twitter" href="#"></a></li>
+                                <li><a class="icon icon-xs link-gray-base fa-youtube" href="#"></a></li>
+                                <li><a class="icon icon-xs link-gray-base fa-linkedin" href="#"></a></li>
+                            </ul>
+                        </div>
+                        <div class="rd-navbar-secondary"><a class="btn btn-xs btn-circle btn-primary"
+                                href="step-1.html">BOOK NOW</a></div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    </main>
+    </div>
+
+
+    <!-- /# sidebar -->
+
+    <!-- <div class="page-header page-header-perspective">
+        <div class="page-header-left"><a class="brand" href="index.html"><img
+                    src="{% static 'images/logo-default-dark-200x36.png' %}" alt="" width="200" height="36" /></a></div>
+        <div class="page-header-center">
+            <div class="step-progress">
+                <div class="step-progress-top"><span class="step-progress-number">1</span><span>of</span><span
+                        class="step-progress-number">3</span></div>
+                <div class="step-progress-bottom">
+                    <p class="step-progress-text">STEPs</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="page-header-right">
+            <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle"
+                data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+                <button class="perspective-menu-toggle"><span></span></button>
+            </div>
+        </div>
+    </div>
+   -->
+</body>
+{% block js %}
+<!-- jquery vendor -->
+<script src="{% static 'jsadmin/lib/jquery.min.js' %} "></script>
+<script src="{% static 'jsadmin/lib/jquery.nanoscroller.min.js' %} "></script>
+<script src="{% static 'jsadmin/lib/menubar/sidebar.js' %} "></script>
+<script src="{% static 'jsadmin//lib/preloader/pace.min.js' %} "></script>
+
+<script src="{% static 'jsadmin/lib/bootstrap.min.js' %} "></script>
+<script src="{% static 'jsadmin/scripts.js' %} "></script>
+
+
+
+
+
+<script src="{% static 'jsadmin/lib/owl-carousel/owl.carousel-init.js' %} "></script>
+{% comment %}
+<script src="js/lib/calendar-2/moment.latest.min.js"></script>
+<script src="js/lib/calendar-2/pignose.calendar.min.js"></script>
+<script src="js/lib/calendar-2/pignose.init.js"></script> {% endcomment %}
+
+
+<script src="js/lib/weather/jquery.simpleWeather.min.js"></script>
+<script src="js/lib/weather/weather-init.js"></script>
+<script src="js/lib/circle-progress/circle-progress.min.js"></script>
+<script src="js/lib/circle-progress/circle-progress-init.js"></script>
+<script src="js/lib/chartist/chartist.min.js"></script>
+<script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
+<script src="js/lib/sparklinechart/sparkline.init.js"></script>
+<script src="js/lib/owl-carousel/owl.carousel.min.js"></script>
+<script src="js/lib/owl-carousel/owl.carousel-init.js"></script>
+<!-- scripit init-->
+<script src="js/dashboard2.js"></script>
+<script src="{% static 'jsadmin/lib/weather/jquery.simpleWeather.min.js' %} "></script>
+<script src="{% static 'jsadmin/lib/weather/weather-init.js' %} "></script>
+
+{% endblock js %}
+
+{% endblock body %}

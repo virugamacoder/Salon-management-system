@@ -1,0 +1,158 @@
+{% extends 'basespecial.html' %}
+
+{% block title %} Cart {% endblock title %}
+{% load static %}
+
+{% block body %}
+<body>
+  <div class="page">
+    <main class="page-content" id="perspective">
+      <div class="content-wrapper">
+        <div class="page-header page-header-perspective">
+          <div class="page-header-left"><a class="brand" href="/"><img src="{% static "images/" %}logo-default-dark-200x36.png" alt="" width="200" height="36"/></a></div>
+          <div class="page-header-right">
+            <div class="booking-control"><a class="btn btn-xs btn-circle btn-primary" href="/a/step1/">BOOK NOW</a></div>
+            <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+              <button class="perspective-menu-toggle"><span></span></button>
+            </div>
+          </div>
+        </div>
+
+        
+        
+        <div id="wrapper" >
+
+          <nav aria-label="breadcrumb"  style="margin-left: 10%;">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"> <a href="/"> Home </a> </li>
+                <li class="breadcrumb-item active" aria-current="page"> Cart </li>
+            </ol>
+        </nav>
+        <section class="section-xl bg-periglacial-blue">
+            
+          <div class="shell"><a class="link link-primary link-return" href="/s/shop/">Back</a>
+
+          {% if cart_items %}
+
+       
+              <div class="table-custom-responsive table-cart-wrap" >
+              <ul id="items">
+                  
+                </ul> 
+              
+                <table class="table-cart" >
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Item</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>SUBTOTAL</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                
+                   
+              
+                    {% for i in cart_items %}
+
+
+                      <tr>
+                        <td><img class="cart-image" src="/media/{{i.product.pimg}}" alt="" width="80" height="82"/>
+                        </td>
+                        <td>
+                          <p class="cart-title"><a href="/s/single-product/{{i.product.pid}}">{{i.product.pname}}</a></p>
+                        </td>
+                        <td>
+                          <p class="cart-price"> &#8377; {{i.product.pprice}}</p>
+                         
+                      
+                        </td>
+                    
+                        <td>
+               
+                          <a href="  {% url 'myapp_shop:removecartminus' i.product.pid %}" style=" font-weight: bold; font-size: x-large;">-</a>
+                          <p class="cart-price" name="quantity" >{{i.quantity}}</p>
+                          <a  href="  {% url 'myapp_shop:addcartplus' i.product.pid %}" style=" font-weight: bold; font-size: x-large;">+</a>
+                      
+                        </td>
+                        <td>
+                          <p class="cart-price" >&#8377; {% widthratio i.quantity 1 i.product.pprice %} </p>
+                        </td>
+
+                        <td><a class="cart-control" href="{% url 'myapp_shop:removecart' i.product.pid %}" onclick="return confirm('Are you sure you want to remove a cart product {{i.product.pname}} ?');"></a></td>
+                      </tr>
+                    
+                      
+                      {% endfor %}
+
+                   
+                   
+                  </tbody>
+                  
+                </table>
+              </div>
+              <div class="table-cart-footer">
+                <div class="table-cart-footer-left">
+                 
+                </div>
+                <div class="table-cart-footer-right">
+                  <dl class="terms-list-bold">
+                    <dt>Total</dt>
+                    <dd>&#8377; {{total}}</dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="table-cart-action-panel">
+                <form  method="post" action="/s/checkout/">
+                  {% csrf_token %}
+                  <input type="hidden" id="SendTotal" name="SendTotal" value="{{total}}" >
+
+                  <li><button  class="btn btn-circle btn-primary" type="submit">    PROCEED TO CHECKOUT</button> </li>
+                </form>  
+                
+              </div>
+           
+
+          
+        {% else %}
+        <div>
+        <img  src="{% static "images/" %}cart_empty.png" alt="" style="display: block; margin:  auto; text-align: center;">
+        </div>
+
+    
+        {% endif %}
+
+      </div>
+    </section>
+
+{% endblock body%}
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+  </body>
+{% endblock endofpage%}
+
+
+
+
+{% block js %}
+<script>
+
+</script>
+{% endblock js%}

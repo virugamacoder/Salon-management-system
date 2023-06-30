@@ -1,0 +1,319 @@
+{% extends 'basespecial.html' %}
+
+{% block title %} Step2 {% endblock title %}
+{% load static %}
+
+{% block body %} 
+
+<body class="one-screen-page">
+  <div class="page">
+    <main class="page-content" id="perspective">
+      <div class="content-wrapper">
+        <div class="page-header page-header-perspective">
+          <div class="page-header-left"><a class="brand" href="/"><img src="{% static "images/" %}logo-default-dark-200x36.png" alt="" width="200" height="36"/></a></div>
+          <div class="page-header-center">
+            <div class="step-progress">
+              <div class="step-progress-top"><span class="step-progress-number">2</span><span>of</span><span class="step-progress-number">3</span></div>
+              <div class="step-progress-bottom">
+                <p class="step-progress-text">STEPs</p>
+              </div>
+            </div>
+          </div>
+          <div class="page-header-right">
+            <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle" data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+              <button class="perspective-menu-toggle"><span></span></button>
+            </div>
+          </div>
+        </div>
+        <div class="custom-progress">
+          <div class="custom-progress-body" style="width: 66.66%;"></div>
+        </div>
+        <div id="wrapper">
+          <section class="section-xs bg-periglacial-blue one-screen-page-content text-center">
+         
+            <div class="shell">
+              <h2>Choose a Date</h2>
+
+           
+              <div class="p text-width-medium">
+                <p class="big">To complete your booking, please choose the date and time that fit you best. We will be glad to offer you top-notch barber services on the selected day.</p>
+              </div>
+
+
+              <h3> {{month}} </h3>
+              
+              <div class="rd-material-tabs date-picker" data-items="2" data-xs-items="3" data-sm-items="4" data-md-items="5" data-margin="15" data-stage-padding="0" data-sm-stage-padding="30">
+
+                <div class="rd-material-tabs__list">
+
+                  <ul class="date-date-list">
+                  {% for key,value in date.items %}
+
+                   {% comment %} <form class="disabled" method="post" id="formOne"> {% endcomment %}
+                    {% if value|date:"l" == "Tuesday" %} 
+                       
+                    <li class="user-select-none disabled" value="{{value|date:"l"}}" id="{{value}}" >
+                          <a class="date-picker-date disabled" href="#" style="pointer-events: none;">
+                          
+                            <div class="date-picker-date-number" name="date" >
+                              {{value|date:"d"}} </div>
+                          <div class="date-picker-date-text" name="day">{{value|date:"l"}}</div>
+                          </a>
+
+                        </li>
+                      {% else %}
+                      
+                      <li value="{{value}}" id="{{value}}">
+
+                        <a class="date-picker-date" href="#">
+                        <div class="date-picker-date-number" name="date" > {{value|date:"d"}}</div>
+                        <div class="date-picker-date-text" name="day" value="">{{value|date:"l"}}</div>
+                        </a>
+                      </li> 
+                    {% endif %}
+                    {% comment %} </form>   {% endcomment %}
+                  {% endfor %}      
+                  </ul>   
+                </div>
+              
+                <div class="rd-material-tabs__container">
+                 
+                  {% for key,value in date.items%}
+                  
+                  <div>  
+                    <form method="post" id="formTwo">
+                    <ul class="date-picker-list animated fadeIn">
+
+                      <li><a href="#">10:00 - 11:00</a></li> 
+                      
+                      <li><a >11:00 - 12:00</a></li>
+                     
+                        {% csrf_token %}   
+                        <li><a >12:00 - 13:00</a></li>
+                           
+                      <li class="disabled"><a>13:00 - 14:00</a></li>
+                      <li ><a >14:00 - 15:00</a></li>
+                      <li><a >15:00 - 16:00</a></li>
+                      <li><a >17:00 - 18:00</a></li>
+                    </ul>
+                   </form>
+                  </div>
+                
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
+          </section>
+          
+
+          <section class="section-xl bg-periglacial-blue text-center">
+            <div class="shell">
+              <div class="group-xl group-middle">
+                
+                
+                <form method="post" action="/a/step1/">
+                  {% csrf_token %}         
+                  <input type="hidden" name="SendService" value="{{SendService}}" >
+                  <input type="hidden" id="SendDate" name="SendDate" value="{{SendDate}}">
+                  <input type="hidden" id="SendTime" name="SendTime" value="{{SendTime}}">
+                  <input type="hidden" id="SendBarbar" name="SendBarbar" value="{{SendBarbar}}">
+                       
+
+                  <button class="btn btn-primary"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Previous</button>
+                </form>
+              
+                <form class="nextForm" method="post" action="/a/step3/">
+                  {% csrf_token %}
+                  <input type="hidden" name="SendService" value="{{SendService}}">
+                  <input type="hidden" id="SendDate" name="SendDate" value="{{SendDate}}">
+                  <input type="hidden" id="SendTime" name="SendTime" value="{{SendTime}}">
+                  <input type="hidden" id="SendBarbar" name="SendBarbar" value="{{SendBarbar}}">
+
+                  <button id="nextBtn" class="btn btn-primary"> Next <i class="fa fa-arrow-right" aria-hidden="true"> </i></button>
+                  
+                </form>
+
+              </div>
+            </div>
+          </section>
+{% endblock body %}
+
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+     
+  </body>
+{% endblock endofpage%}
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{% block js%}
+
+<script>
+
+ 
+  $(document).ready(function() {
+
+
+
+
+/* Window load Start */   
+
+$( window ).load(function() {
+  var dateList =  document.querySelectorAll(".rd-material-tabs__list ul li");
+  
+  checknext();
+  var datevar = document.querySelector("#SendDate").value;
+ 
+
+  datevar = datevar.trim();
+  
+  var datekey;
+  
+  for (let j = 0; j < dateList.length; j++) {
+     
+    if(dateList[j].getAttribute('id') == datevar)
+    {    
+    datekey = j;  
+    {% comment %} dateList[j].click(); {% endcomment %}
+    break;
+    }
+  }
+  console.log("datakey : " + datekey);
+  
+  var timevar = document.querySelector("#SendTime").value;
+  const myslist = document.querySelectorAll('.date-picker-list a');
+
+  totalpart = myslist.length/dateList.length;
+  timeStart = 1*datekey*totalpart;
+  timeEnd = timeStart+totalpart;
+  
+  for (let i = timeStart; i < timeEnd; i++) {
+   
+   myslist[i].style.color = "#000";
+   myslist[i].style.background = "#fff";
+
+  if(myslist[i].innerHTML == timevar){
+       myslist[i].click();
+       break;
+     }
+
+  }
+
+  const mydlist = document.querySelectorAll('.date-picker-list li.disabled a');
+  
+  for (let i = 0; i < mydlist.length; i++) {
+    mydlist[i].style.color = "#999";
+    mydlist[i].style.background = "#cfdbd5";
+  }
+  
+  checknext();
+});
+
+/* Window load end */
+
+/* Date Selection Start */
+var atime = "";
+
+$(".rd-material-tabs__list li").click(function(e){
+  date = $(this).attr('id');
+  var SendDate =   document.querySelectorAll("#SendDate");
+ 
+  for(j=0;j<SendDate.length;j++){  
+    SendDate[j].value = date;
+    console.log(SendDate[j].value);
+  }
+
+  var SendTime = document.querySelectorAll("#SendTime");
+
+  for(j=0;j<SendTime.length;j++){  
+    SendTime[j].value = '';
+    console.log(SendTime[j].value);
+  }
+  
+  checknext();
+}); 
+/* Date Selection End */
+
+/* Next Btn Check Start*/
+function checknext()
+{
+CheckNextDate = document.querySelectorAll("#SendDate");
+CheckNextTime = document.querySelectorAll("#SendTime");
+
+for(i=0;i<CheckNextDate.length;i++){
+
+  if((CheckNextDate[i].value == '') || (CheckNextTime[i].value== ''))
+  {           
+    document.getElementById("nextBtn").disabled = true;
+  }
+  else
+  {
+    document.getElementById("nextBtn").disabled = false;
+  } 
+}
+}
+
+
+/* Next Btn Check End*/
+
+$("#nextBtn").click(function(e){
+      
+});
+
+
+/* Time Selection Start */
+$('.date-picker-list a').click(selecttime);
+
+function selecttime()
+{
+  const mytimelist = document.querySelectorAll('.date-picker-list a');
+  
+  for (let i = 0; i < mytimelist.length; i++) {
+    mytimelist[i].style.color = "#000";
+    mytimelist[i].style.background = "#fff";
+  }
+
+  const mydtimelist = document.querySelectorAll('.date-picker-list li.disabled a');
+  
+  for (let i = 0; i < mydtimelist.length; i++) {
+    mydtimelist[i].style.color = "#999";
+    mydtimelist[i].style.background = "#cfdbd5";
+  }
+
+   $(this).css("color", "#fff");
+   $(this).css("background", "#014d55");
+   atime = $(this).text().trim(); 
+
+   var SendTime = document.querySelectorAll("#SendTime");
+
+   for(j=0;j<SendTime.length;j++){  
+     SendTime[j].value = atime;
+     console.log(SendTime[j].value);
+   }
+
+  checknext();
+
+
+ }
+/* Time Selection End */
+});
+</script>
+
+{% endblock js %} 

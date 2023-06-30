@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %} Otp Varification {% endblock title %}
+{% load static %}
+
+{% block head %}
+
+<link href="{% static 'cssadmin/lib/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/themify-icons.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/lib/helper.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style.css' %}" rel="stylesheet">
+<link href="{% static 'cssadmin/style2.css' %}" rel="stylesheet">
+
+<script src="{% static 'js/scripts.js' %}"></script>
+{% endblock head %}
+
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+
+{% block body %}
+        
+        <div id="wrapper">
+           
+            <div class="login-form ">
+
+              <h4>Otp Verification</h4>
+              <form action="/a/otpvalidate/" method="post">
+
+                {% csrf_token %}    
+                <div class="container d-flex justify-content-center align-items-center">
+                  <div class="position-relative">
+                    <div class="card p-2 text-center">
+
+                      <h6>Please enter the one time password <br> to verify your account</h6>
+
+                      <div> <span>A code has been sent to your email id </div>
+                      <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
+                        <input
+                          class="m-2 text-center form-control rounded" type="text" id="first" name="otpi1" maxlength="1" /> 
+                          <input
+                          class="m-2 text-center form-control rounded" type="text" id="second" name="otpi2" maxlength="1" /> 
+                          <input
+                          class="m-2 text-center form-control rounded" type="text" id="third" name="otpi3" maxlength="1" /> 
+                          <input
+                          class="m-2 text-center form-control rounded" type="text" id="fourth" name="otpi4" maxlength="1" /> 
+                          <input
+                          class="m-2 text-center form-control rounded" type="text" id="fifth" name="otpi5" maxlength="1" /> 
+                          <input
+                          class="m-2 text-center form-control rounded" type="text" id="sixth" name="otpi6" maxlength="1" /> 
+                    </div>
+
+
+                      <div class="mt-4"> <button class="btn btn-sm btn-primary btn-block btn-circle validate">Validate</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+      
+        
+
+{% endblock body%}
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+  </body>
+{% endblock endofpage%}
+
+
+{% block js%}
+
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+
+  function OTPInput() {
+    const inputs = document.querySelectorAll('#otp > *[id]');
+    
+    for (let i = 0; i < inputs.length; i++) {
+      
+      inputs[i].addEventListener('keydown', function (event) {
+        if (event.key === "Backspace") {
+          inputs[i].value = '';
+          if (i !== 0) inputs[i - 1].focus();
+        } else {
+          if (i === inputs.length - 1 && inputs[i].value !== '') {
+            return true;
+          } else if (event.keyCode > 47 && event.keyCode < 58) {
+            inputs[i].value = event.key;
+            if (i !== inputs.length - 1) inputs[i + 1].focus();
+            event.preventDefault();
+          } else if (event.keyCode > 64 && event.keyCode < 91) {
+            inputs[i].value = String.fromCharCode(event.keyCode);
+            if (i !== inputs.length - 1) inputs[i + 1].focus();
+            event.preventDefault();
+          }
+        }
+      });
+    }
+  }
+  OTPInput();
+});
+
+</script>
+{% endblock js%}

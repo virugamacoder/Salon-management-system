@@ -1,0 +1,52 @@
+{% extends 'basefinish.html' %}
+
+{% block title %}Finish {% endblock title %}
+{% load static %}
+
+
+{% block bodytag %}
+<body class="one-screen-page">
+  {% endblock bodytag %} 
+
+{% block body %}
+
+        <div id="wrapper">
+          <section class="section-xl bg-periglacial-blue one-screen-page-content text-center">
+            <div class="shell">
+              <h2>Thanks for order</h2>
+          
+              
+              <div class="p text-width-small">
+                <p class="big">Your Order is completed ! </p>
+              </div><a class="btn btn-sm btn-style-1 btn-primary" href="/">Back to homepage</a>
+            </div>
+          </section>
+
+       
+
+          {% endblock body %}
+
+
+
+          {% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+  </body>
+{% endblock endofpage%}
+
+
+
+ 
+
+

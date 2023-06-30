@@ -1,0 +1,114 @@
+{% extends 'main1.html' %}
+{% block title %} Product Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+ <div class="content-wrap">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/service/manageservice/">Manage Service</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Service</li>
+        </ol>
+    </nav>
+    <div class="main">
+
+        <div class="content-wrap">
+
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title-">
+                                <h1> Add Service<span></span></h1>
+                            </div><br>
+                    
+                        </div>
+                    
+                                        <form action="/admin/service/sadd/" method="POST" enctype="multipart/form-data" name="addservice" class="needs-validation" novalidate>{% csrf_token %}
+                                    
+                                            <div class="form-group" >
+                                                <label >Service Name</label>
+                                                <input type="text" class="form-control"  id="exampleFormControlInputname" name="sname" required>
+                                                <div class="invalid-feedback">
+                                                    Please Enter valid Service Name
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="form-group">
+                                                <label >Price</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInputprice" name="sprice"  required>
+                                               <div class="invalid-feedback">
+                                                    Please Enter valid price
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Discription</label>
+                                                <textarea class="form-control" id="sdesc" rows="4" name="sdesc"   required></textarea>
+                                                 <div class="invalid-feedback">
+                                                    Please Enter Description
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="form-group ">
+                                                <label for="Imgae">Image</label>
+                                                <input type="file" class="form-control-file" id="simg" name="simg" required>
+                                               <div class="invalid-feedback">
+                                                    Please Select Image
+                                                </div>
+                                            </div>
+                                  
+                                            <button type="submit" id="save" class="btn btn-primary fire" id="fire">Save</button>
+                                        </form>
+                                    <!-- </div>
+                                </div>
+                            </div>
+                        </div> -->
+                       
+                       
+                    </div>
+                </div>
+             </div>
+        </div><!-- content warp -->
+    </div><!-- main -->
+
+</div><!-- content warp -->
+    <script>
+
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+
+
+
+
+
+ </script> 
+    <script src="{% static 'jsadmin/bootstrap.min.js' %} "></script>
+    <script src="{% static 'jsadmin/popper.js' %} "></script>
+
+    <script src="{% static 'jsadmin/jquery.js' %} "></script>
+    
+      
+           
+
+{% endblock body %}

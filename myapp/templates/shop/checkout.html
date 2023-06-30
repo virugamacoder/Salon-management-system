@@ -1,0 +1,292 @@
+{% extends 'basespecial.html' %}
+
+
+{% block title %} Checkout {% endblock title %}
+
+{% block head %}
+<style>
+ 
+</style>
+    {% endblock head %} 
+
+{% block body %}
+
+
+{% load static %}
+<body>
+  <div class="page">
+    <main class="page-content" id="perspective">
+      <div class="content-wrapper">
+        <div class="page-header page-header-perspective">
+          <div class="page-header-left"><a class="brand" href="/"><img src="{% static 'images/' %}logo-default-dark-200x36.png" alt="" width="200" height="36" /></a></div>
+          <div class="page-header-right">
+            <div class="booking-control"><a class="btn btn-xs btn-circle btn-primary" href="/a/step1/">BOOK NOW</a>
+            </div>
+            <div id="perspective-open-menu" data-custom-toggle=".perspective-menu-toggle"
+              data-custom-toggle-hide-on-blur="true"><span class="perspective-menu-text">Menu</span>
+              <button class="perspective-menu-toggle"><span></span></button>
+            </div>
+          </div>
+        </div>
+        <div id="wrapper">
+          <section class="section-xl bg-periglacial-blue">
+            <div class="shell"><a class="link link-primary link-return" href="/s/cart/">Back</a>
+            
+            </div>
+          </section>
+          <section class="section-xl bg-periglacial-blue">
+            <div class="shell">
+              <div class="range range-sm-left range-50">
+                <div class="cell-md-10 cell-lg-6">
+                  <h3 class="text-center">Billing Details</h3>
+                  {% comment %} form Starting  {% endcomment %}
+                  <form   method="post"
+                    action="/s/bookorder/" class="needs-validation" novalidate>
+                    {% csrf_token %}
+            
+                  
+                    <input type="hidden" id="amount" name="amount" value="500">
+                    <div class="range range-sm-bottom range-15">
+                      <div class="cell-sm-6">
+                        <div class="form-group">
+                          <label class="form-label-outside" for="billing-first-name">First Name *</label>
+                          <input class="form-control" id="billing-first-name" type="text" name="first-name" data-constraints="@Required"
+                            required>
+                            {% comment %} <div class="invalid-feedback">
+                              Please Enter the First Name
+                            </div> {% endcomment %}
+                        </div>
+                      </div>
+                      <div class="cell-sm-6">
+                        <div class="form-group">
+                          <label class="form-label-outside" for="billing-last-name">Last Name *</label>
+                          <input class="form-control" id="billing-last-name" type="text" name="last-name"
+                            data-constraints="@Required" required>
+                             {% comment %} <div class="invalid-feedback">
+                              Please Enter the last Name
+                            </div> {% endcomment %}
+                        </div>
+                      </div>
+                   
+                      <div class="cell-sm-6">
+                        <div class="form-group">
+                          <label class="form-label-outside" for="billing-phone">Phone *</label>
+                        
+                          <input class="form-control" id="billing-phone" type="tel" name="phone"
+                        pattern="[0-9]*" minlength="10" maxlength="10"  data-constraints="@Required" required>
+                         {% comment %} <div class="invalid-feedback">
+                              Please Enter the 10 digit number
+                            </div> {% endcomment %}
+                        </div>
+                      </div>
+                      <div class="cell-xs-12">
+                        <div class="form-group">
+                          <label class="form-label-outside" for="billing-address">Address *</label>
+                          <input class="form-control" id="billing-address" type="text" name="address"
+                            data-constraints="@Required" required>
+                             {% comment %} <div class="invalid-feedback">
+                              Please Enter the Valid Address
+                            </div> {% endcomment %}
+                        </div>
+                      </div>
+                    
+                      <div class="cell-sm-6">
+                        <div class="form-group">
+                          <label class="form-label-outside" for="billing-city">City*</label>
+                          <input class="form-control" id="city" type="text" name="city"  data-constraints="@Required"  required>
+                           {% comment %} <div class="invalid-feedback">
+                              Please Enter the city
+                            </div> {% endcomment %}
+                        </div>
+                      </div>
+                      <div class="cell-sm-6">
+                        <div class="form-group">
+                          <label class="form-label-outside" for="billing-state">State *</label>
+                          <input class="form-control" id="state" type="text" name="state"   data-constraints="@Required" required>
+                           {% comment %} <div class="invalid-feedback">
+                              Please Enter the state
+                            </div> {% endcomment %}
+                        </div>
+                      </div>
+                      <div class="cell-sm-6">
+                        <div class="form-group">
+                          <label class="form-label-outside" for="billing-country">Locality</label>
+                          <input class="form-control" id="locality" type="text" name="locality" >
+                        </div>
+                      </div>
+                      <div class="cell-sm-6">
+                        <div class="form-group">
+                          <label class="form-label-outside" for="billing-postcode">Postcode *</label>
+                          <input class="form-control" id="postcode" type="text" name="postcode"
+                            data-constraints="@Required" minlength="6" maxlength="6" required>
+                             {% comment %} <div class="invalid-feedback">
+                              Please Enter Pincode 6 digit
+                            </div> {% endcomment %}
+                        </div>
+                      </div>
+                       
+                    </div>
+                
+                
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-lg bg-periglacial-blue" style="margin-top: -100px;">
+            <div class="shell">
+              <div class="range range-50">
+                <div class="cell-xs-12">
+                  <h3>Your order</h3>
+                </div>
+              </div>
+              <div class="range range-30">
+                <div class="cell-sm-8 cell-md-6">
+          
+                  <dl class="terms-list-block terms-list-block-horizontal">
+                    <dt>Subtotal</dt>
+                    <dd >&#8377; {{SendTotal}}</dd>
+                  <input type="hidden" id="SendTotal" name="SendTotal" value="{{SendTotal}}">
+
+                  </dl>
+                  <dl class="terms-list-block terms-list-block-horizontal">
+                    <dt>Shipping</dt>
+                    <dd>Free Shipping
+                    </dd>
+                  </dl>
+                  <dl class="terms-list-block terms-list-block-horizontal">
+                    <dt>Total</dt>
+                    <dd>&#8377; {{SendTotal}} </dd>
+                  </dl>
+                </div>
+
+           
+
+                <div class="cell-sm-8 cell-md-6" style="margin-top: -50px;">
+           
+                  <div class="range range-50 ">
+                    <div class="cell-xs-12">
+                      <h3>Payment Options</h3>
+                    </div>
+                  </div>     
+                  <br>
+                  <br>
+                  <ul class="list-blocks-bordered">
+                
+                    <li>        
+                      <input type="radio" name="radio-payment" id="cod" value="cod" style="width: 18px; height: 18px; background-color: #014D55;" required>
+                    
+                       <label for="cod">
+                        <h4>COD</h4> 
+                      </label>
+                    
+                     
+                    </li>
+                      <li>        
+                      <input type="radio" name="radio-payment" id="rzp" value="online" style="width: 18px; height: 18px; background-color: #014D55;" required>
+                       <label for="Razorpay">
+                        <h4>razorpay</h4> 
+                      </label>
+                      
+                     
+                    </li>
+              
+                    
+                  </ul>
+                </div>
+                <div class="cell-sm-8 cell-md-12 offset-custom-1 text-right" style="margin-top:-40px;"><button
+                  class="btn btn-sm btn-default-size btn-primary btn-circle" type="submit" id="submitForm">Place order</button></div>
+            </div>
+                   
+            </div>
+            
+          </section>
+         </form>
+
+         {% comment %} enf Forms {% endcomment %}
+
+ 
+{% endblock body%}
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+     
+  {% comment %} <script src="js/core.min.js"></script>
+  <script src="js/script.js"></script> {% endcomment %}
+  <script src="{% static 'js/core.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script> 
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+
+ (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})(); 
+
+
+var options = {
+ 
+    "key": "rzp_test_heisFYtHc4xPw1", // Enter the Key ID generated from the Dashboard
+    "amount": Number("{{SendTotal}}") * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "{{reciever_name}}",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{oid}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "http://127.0.0.1:8000/s/finish/",
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+  
+};
+
+  var rzp1 = new Razorpay(options);
+  document.getElementById('submitForm').onclick = function(e){
+    if(document.getElementById('rzp').checked == true){
+    rzp1.open();
+    
+    e.preventDefault();
+    }
+}
+
+
+</script>
+  </body>
+{% endblock endofpage%}
+
+
+

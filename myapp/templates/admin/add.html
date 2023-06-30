@@ -1,0 +1,114 @@
+{% extends 'main1.html' %}
+{% block title %} Product Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+Hello
+ <div class="content-wrap">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin/manageprod/">ManageProduct</a></li>
+            <li class="breadcrumb-item active" aria-current="page">EditProduct</li>
+        </ol>
+    </nav>
+    <div class="main">
+
+        <div class="content-wrap">
+
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title-">
+                                <h1> Add Service<span></span></h1>
+                            </div><br>
+                    
+                        </div>
+                    
+                                        <form action="/admin/add/" method="POST" enctype="multipart/form-data" id="myform">{% csrf_token %}
+                                    
+                                            <div class="form-group" >
+                                                <label >Product Name</label>
+                                                <input type="text" class="form-control"  id="pname" name="pname" >
+                                               
+                                            </div>
+                                            <div class="form-group">
+                                                <label >Price</label>
+                                                <input type="number" class="form-control" id="pprice" name="pprice" data-constraints="@Required">
+                                              
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Discription</label>
+                                                <textarea class="form-control" id="pdesc" rows="4" name="pdesc" data-constraints="@Required"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Information</label>
+                                                <textarea class="form-control" id="pinfo" rows="4" name="pinfo" ></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Stock</label>
+                                                <input type="number" class="form-control" id="pstock" name="pstock">
+                                                
+                                            </div>
+                                        
+                                            <div class="form-group ">
+                                                <label for="Imgae">Image</label>
+                                                <input type="file" class="form-control-file" id="pimg" name="pimg" >
+                                              
+                                            </div>
+                                  
+                                            <button type="submit" class="btn btn-primary fire" id="fire">Add Product</button>
+                                        </form>
+                                    <!-- </div>
+                                </div>
+                            </div>
+                        </div> -->
+                       
+                       
+                    </div>
+                </div>
+             </div>
+        </div><!-- content warp -->
+    </div><!-- main -->
+
+</div><!-- content warp -->
+    <script>
+  const form = document.querySelector('#myform');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent the form from submitting
+
+    // validate the form data
+    const pname = document.querySelector('#pname').value;
+    const pprice = document.querySelector('#pprice').value;
+    const pdesc = document.querySelector('#pdesc').value;
+    const pinfo = document.querySelector('#pinfo').value;
+    const pstock = document.querySelector('#pstock').value;
+   const pimg = document.querySelector('#pimg');
+    const img = pimg.files[0];
+    if (!pname || !pprice || !pdesc || !pinfo || !pstock)  {
+      alert('Please fill out all fields.');
+      return;
+    }else if(!img)
+    {
+      alert('Please select image file JPG/PNG');
+      return;
+    }
+    
+
+    // submit the form
+    form.submit();
+  });
+    {% comment %} <script src="{% static 'jsadmin/bootstrap.min.js' %} "></script>
+    <script src="{% static 'jsadmin/popper.js' %} "></script>
+
+    <script src="{% static 'jsadmin/jquery.js' %} "></script> {% endcomment %}
+    
+        {% comment %} $('.alert').alert(); {% endcomment %}
+    </script>         
+
+{% endblock body %}

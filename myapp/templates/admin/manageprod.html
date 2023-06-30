@@ -1,0 +1,133 @@
+{% extends 'main1.html' %}
+{% block title %} Product Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+   
+    <div class="main">
+       
+        <div class="content-wrap">
+ 
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-10 p-r-5 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Manage Product<span></span></h1>
+                            </div><br>
+                         <nav class="navbar navbar-light bg-light">
+                              <a class="navbar-brand" href="/admin/add/"><i class="ti-plus info"></i> Add New Product</a>
+                            </nav><br><br>
+                           
+                          {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div><br><br>
+                          {% endfor %}
+
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Product List </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                  {% if products %}
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Description</th>
+                                                <th>Information</th>
+                                                <th>Stock</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in products%}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                <td><img src="/media/{{i.pimg}}/" alt="" width="100" height="100" /></td>
+                                                <td>{{i.pname}}</td>
+                                                <td>{{i.pprice}}</td>
+                                                <td>{{i.pdesc}}</td>
+                                                <td>{{i.pinfo}}</td>
+                                                <td>{{i.pstock}}</td>
+                                               <td> <a href="/admin/update/{{i.pid}}/" style="color:green"><i
+                                                            class=" red large material-icons">border_color</i></a>
+                         
+
+                                                </td> 
+                                                 <!-- <td> <a href="#modal{{forloop.counter}}" style="color:green" data-target="#modal"><i
+                                                            class=" red large material-icons"  >border_color</i></a>
+                         
+
+                                                </td> -->
+
+                                                <td><a href="/admin/delete/{{i.pid}}" style="color:red" class="delete"> <i
+                                                            class="red large material-icons">delete_forever</i></a>
+                                                </td>
+
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                       <h6> No Have Any Product List</h6>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+ 
+
+ 
+{% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+         {% endcomment %}
+
+<script>
+
+  const delete = document.querySelectorAll('.delete');
+  delete.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      const confirmed = confirm('Are you sure you want to delete this item?');
+      if (!confirmed) {
+        event.preventDefault(); // prevent the default action of the link
+      }
+    });
+  });
+
+
+
+
+ /* const delete = document.querySelector('#del a');
+  delete.addEventListener('click', function(event) {
+   // event.preventDefault(); // prevent the link from navigating to the URL specified in the href attribute
+    const confirmed = confirm('Are you sure you want to delete this item?');
+    if (!confirmed) {
+      event.preventDefault(); // prevent the default action of the button (e.g. form submission)
+    }
+  });*/
+
+ </script>
+{% endblock body %}

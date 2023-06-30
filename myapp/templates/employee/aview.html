@@ -1,0 +1,204 @@
+{% extends 'ebase.html' %}
+{% block title %}Service{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+   
+    <div class="main">
+       
+        <div class="content-wrap">
+ 
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-10 p-r-5 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>View Appointment<span></span></h1>
+                            </div><br>
+                      
+                          {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div><br><br>
+                          {% endfor %}
+
+                        <div class="card">
+                            <div class="card-title">
+                                <h4> Ongoing Appointment List </h4>
+                            </div>
+                            <div class="card-body">
+                                {% if present %}
+                                <div class="table-responsive">
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>Service</th>
+                                                <th>Customer</th>
+                                                <th>Service Total</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Appointment Status</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in present %}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                <td>
+                                                   <ul>
+                                                      {% for sid in i.sid.all %}
+                                                        <li>{{sid.sname }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </td>
+                                                <td>{{i.cid.first_name}} {{i.cid.last_name}}</td>
+                                                <td>{{i.aprice}}</td>
+                                                <td>{{i.adate}}</td>
+                                                <td>{{i.atime}}</td>
+
+                                              
+                                                <td>{{i.astatus}} 
+                                                    
+                                                  {% if i.astatus == "SCHEDULED" %}
+                                                    <a href="/employee/astatus/{{i.aid}}/" style="color:blue"><i
+                                                    class=" large ti-new-window"></i></i></a>
+                                                  {% endif%}
+                                                </td>
+
+                                                
+
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                     <hr><br><p> No have any Present Appointment</p>
+                                     {% endif %}
+                                </div>
+                            </div><br>
+                        </div><hr><br>
+                        {% comment %} <hr><br> {% endcomment %}
+                          <div class="card">
+                            <div class="card-title">
+                                <h4>Upcoming Appointment List </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    {% if future %}
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>Service</th>
+                                                <th>Customer</th>
+                                                <th>Service Total</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Appointment Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in future %}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                <td>
+                                                   <ul>
+                                                      {% for sid in i.sid.all %}
+                                                        <li>{{sid.sname }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </td>
+                                                <td>{{i.cid.first_name}} {{i.cid.last_name}}</td>
+                                                <td>{{i.aprice}}</td>
+                                                <td>{{i.adate}}</td>
+                                                <td>{{i.atime}}</td>
+                                                <td>
+                                                    {{i.astatus}}
+                                                </td>
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                       <hr><br><p> No have Upcoming Appointment</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div><hr><br>
+                         <div class="card">
+                            <div class="card-title">
+                                <h4>Previous Appointment List  </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    {% if  past %}
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>Service</th>
+                                                <th>Customer</th>
+                                                <th>Service Total</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Appointment Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in past %}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                <td>
+                                                   <ul>
+                                                      {% for sid in i.sid.all %}
+                                                        <li>{{sid.sname }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </td>
+                                                <td>{{i.cid.first_name}} {{i.cid.last_name}}</td>
+                                                <td>{{i.aprice}}</td>
+                                                <td>{{i.adate}}</td>
+                                                <td>{{i.atime}}</td>
+                                                <td>
+                                                    {{i.astatus}}
+                                                </td>
+
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                       <hr><br><p> No such Have past Appointment</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+  
+  
+<script>
+ 
+
+
+ </script>
+{% endblock body %}

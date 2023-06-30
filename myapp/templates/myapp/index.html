@@ -1,0 +1,427 @@
+{% extends 'baseindex.html' %}
+
+{% block title %}Home {% endblock title %}
+
+{% load static %}
+
+{% block head%}
+
+
+{% endblock head%}
+
+{% block body %}
+<body>
+
+  {% if messages %}
+  {% for message in messages %}
+
+    {% if message.tags in 'success' %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div> 
+
+  {% elif message.tags in 'error'%}
+    <div class="alert alert-danger" role="alert">
+      {{ message }} 
+    </div>
+
+  {% endif %}
+  {% endfor %}
+{% endif %}
+
+
+<div class="page">
+
+  <header class="page-header">
+      <div class="rd-navbar-wrap">
+        <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fullwidth" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fullwidth" data-stick-up-clone="true" data-md-stick-up-offset="140px" data-lg-stick-up-offset="140px">
+
+          <div class="rd-navbar-inner">
+
+
+            <div class="rd-navbar-panel">
+              <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+              <div class="rd-navbar-brand" style="margin-left:-80px;">
+                <a class="brand-name" href="/">
+                  <div class="brand-mobile">
+                    <img src="{% static 'images/logo-default-dark-200x36.png' %}" alt="" width="200" height="36"/>
+                  </div>
+                  
+                  <div class="brand-desktop">
+                    <img src="{% static 'images/logo-big-dark-125x125.png' %}" alt="" width="100" height="100"/>
+                  </div>
+                
+                </a>
+                </div>
+              </div>
+          
+            <div class="rd-navbar-nav-wrap">
+              <div class="rd-navbar-nav-inner">
+                <ul class="rd-navbar-nav">
+                  
+                  <li class="active"><a href="/">Home</a>
+                    
+                    
+                  </li>
+                  <li><a href="/about/">About</a>
+                   
+                  </li>
+                  <li><a href="/services/">Services</a>
+                  </li>
+                  <li><a href="/barbers/">Barbers</a>
+                   
+                  </li>
+                  <li><a href="/s/shop/">Shop</a>
+                  </li>
+
+                  <li><a href="/contacts/">Contacts</a>
+                  </li>
+                  {% comment %} <i class="fa-duotone fa-square-user"></i> {% endcomment %}
+       
+                  {% if user.is_authenticated and user.is_customer%}
+                
+                <li>
+
+                      <li>
+                        <a href="/customer/">
+                   <div class="btn btn-xs btn-primary  btn-login-after"><span class="icon material-icons-person_outline"></span>
+                    <span class="caret"></span></div>
+                  </a>
+
+                    <ul class="rd-navbar-dropdown">
+                      <li><a href="/customer/"> <i class="fa-duotone fa-user"></i> My Account</a>  </li>
+                      <li><a href="/customer/aview/"> <i class="fa-solid fa-calendar-check"></i> Appointment</a> </li>
+                      <li><a href="/customer/orderhistory/"><i class="fa-solid fa-bag-shopping"></i> Order</a> </li>
+                      <li><a href="/logout/"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a> 
+                </li>
+           {% else %}
+       
+              <li>
+                <a href="/login/">
+           <div class="btn btn-xs btn-primary  btn-login">Login</div>
+                </a> 
+              </li>
+          
+           {% endif %}
+
+                             
+
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+   
+    <section class="jumbotron-custom jumbotron-custom-3 bg-white bg-image bg-image-custom bg-image-center" style="background-image: url( {% static 'images/home-three-1-1920x800.jpg' %});">
+
+      <div class="jumbotron-custom-content text-center">
+        <div class="shell">
+          <div class="range range-sm-center">
+            <div class="cell-sm-9 cell-md-8 cell-lg-7">
+              <h1>Enjoy our barber services</h1>
+              <p class="large"> Establish your new amazing look with Barbershop services! From haircuts to hot shaves, you can experience the best level of barbering in the area.</p><a class="btn btn-style-1 btn-primary" href="/a/step1/">BOOK NOW</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+    </section>
+   
+
+    <section class="section-xl bg-periglacial-blue text-center text-md-left">
+      <div class="shell-fluid shell-condensed">
+        <div class="range range-md-reverse range-xs-middle range-md-right range-50">
+          <div class="cell-md-5 cell-lg-4">
+            <div class="inset-1">
+              <h2>WHO WE ARE</h2>
+              <div class="p text-width-smallest">
+                <p class="big">Barbershop is a team of highly qualified barbers dedicated to offering the best value. We do this by providing high quality salon services for men and boys, in a warm, friendly atmosphere.</p>
+              </div><a class="btn btn-sm btn-style-1 btn-primary" href="/about/">Read more</a>
+            </div>
+          </div>
+          <div class="cell-md-7 cell-lg-6">
+            <div class="row row-gutter-custom range-15">
+              <div class="col-xs-4">
+                <figure class="figure-fullwidth"><img src="{% static 'images/about-1-300x460.jpg' %}" alt="" width="300" height="460"/>
+                </figure>
+              </div>
+              <div class="col-xs-4">
+                <figure class="figure-fullwidth"><img src="{% static 'images/about-2-300x460.jpg' %}" alt="" width="300" height="460"/>
+                </figure>
+              </div>
+              <div class="col-xs-4">
+
+                <figure class="figure-fullwidth"><img src="{% static 'images/about-3-300x460.jpg' %}" alt="" width="300" height="460"/>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white" >
+      <div class="shell-fluid shell-condensed">
+        <div class="range range-condensed">
+          <div class="cell-md-6 cell-md-6-mod-1 image-wrap-left bg-white bg-image" style="background-image: url({% static 'images/home-three-2-910x800.jpg'%});">
+            <div class="image-wrap-inner">
+              <h2>OUR<br>SERVICES</h2>
+              <p class="big">Barbershop offers world-class men's haircuts, beard grooming, and hot razor shaves. Here are just some of the services we are famous for.</p><a class="btn btn-style-1 btn-primary" href="/services/">read more</a>
+            </div>
+          </div>
+          <div class="cell-md-6 cell-md-6-mod-2 image-wrap-right bg-gray-dark bg-image" style="background-image: url({% static 'images/home-three-3-1011x800.jpg'%});">
+               
+            <div class="image-wrap-inner">
+              <div class="range range-condensed range-inner-bordered">
+                <div class="cell-xs-6">
+                  <article class="box-icon">
+                    
+                    <figure class="box-icon-image"><img src="{% static 'images/icon-service-light-3-70x62.png' %}" alt="" width="70" height="62"/>
+                    </figure>
+                    <p class="box-icon-header"><a class="link-underlined" href="/services/">BEARD trim</a></p>
+                    <p class="box-icon-text">Well-trimmed beard is a must-have element of every men’s image</p>
+                  </article>
+                </div>
+                <div class="cell-xs-6">
+                  <article class="box-icon">
+                    <figure class="box-icon-image"><img src="{% static 'images/icon-service-light-4-70x62.png' %}" alt="" width="70" height="62"/>
+                    </figure>
+                    <p class="box-icon-header"><a class="link-underlined" href="/services/">Mustache TRIM</a></p>
+                    <p class="box-icon-text">Mustaches also need to be trimmed regularly</p>
+                  </article>
+                </div>
+                <div class="cell-xs-6">
+                  <article class="box-icon">
+                    
+                    <figure class="box-icon-image"><img src="{% static 'images/icon-service-light-1-70x62.png' %}" alt="" width="70" height="62"/>
+                    </figure>
+                    <p class="box-icon-header"><a class="link-underlined" href="/services/">TRADITIONAL HAIRCUTS</a></p>
+                    <p class="box-icon-text">One of the most popular services our barbers provide</p>
+                  </article>
+                </div>
+                <div class="cell-xs-6">
+                  <article class="box-icon">
+                    <figure class="box-icon-image"><img src="{% static 'images/icon-service-light-2-70x62.png' %}" alt="" width="70" height="62"/>
+                    </figure>
+                    <p class="box-icon-header"><a class="link-underlined" href="/services/">SHAVES</a></p>
+                    <p class="box-icon-text">Our shaving services will make you look really handsome</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+   
+
+    <section class="section-xl bg-gray-dark bg-image text-center bg-white" style="background-image: url({% static 'images/bg-image-1.jpg'%}); margin-top:100px; margin-bottom:100px;" >
+      
+      <div class="shell">
+        <div class="range range-50">
+          <div class="cell-xs-12">
+            <h2>OUR BARBERS</h2>
+            <div class="p text-width-medium">
+              <p class="big">We employ only highly qualified barbers who are not just professionals, but also enjoy maintaining the atmosphere of a classic barbershop.</p>
+            </div>
+          </div>
+
+
+
+          <div class="cell-xs-12">
+            <div class="range range-30">
+              
+              
+
+              {% if barbar %}
+              {% for i in barbar %} 
+                  
+                  <div class="cell-sm-6 cell-md-4 height-fill">
+                    <div class="thumbnail-card"><img class="thumbnail-card-image" src="/media/{{i.emp.uimg}}" alt="" width="370" height="310"/>
+                      <div class="thumbnail-card-body">
+                        <p class="thumbnail-card-header" data-toggle="modal" data-target="#modalWindow">{{i.emp.first_name}} {{i.emp.last_name}}</p>
+                      
+                      <div class="thumbnail-card-text">
+                        <p> Specialist {{i.skills}}</p>
+                      </div>
+                        <div class="thumbnail-card-text">
+                          <p>{{i.infromation}} </p>
+                        </div>
+
+                        <ul class="inline-list inline-list-md">
+                          <li><a class="icon icon-xs link-gray-base fa-facebook" href="#"></a></li>
+                          <li><a class="icon icon-xs link-gray-base fa-twitter" href="#"></a></li>
+                          <li><a class="icon icon-xs link-gray-base fa-linkedin" href="#"></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                 {% endfor %}
+              
+              
+             {% else %}
+             <article class="card-service">
+              <p>Not Barbars Available</p>
+              
+            </article>
+             {% endif %}
+                
+                </div>
+              </div>
+             
+              {% if barbar %}
+              <div class="cell-xs-12"><a class="btn btn-sm btn-style-1 btn-primary" href="/barbers/">VIEW all team</a></div>
+              {% endif %}
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section-xxl bg-gray-base bg-gray-dark-overlay bg-image" style="background-image: url({% static 'images/bg-image-6.jpg' %});">
+      "
+      <div class="shell">
+        <div class="range">
+          <div class="cell-sm-8 cell-md-7 cell-lg-6">
+            <h2 style="max-width: 90%;">BARBERSHOP HAIRCUT SERVICES</h2>
+            <p class="big">
+              We take pride in each service we provide. Every effort is made to give you the best barber experience whatever your haircut or shaving style is. Feel free to browse our services list to learn more about the services we offer our clients and guests.
+              
+            </p><a class="btn btn-sm btn-circle btn-primary" href="/services/">View all services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="box-wrap box-wrap-md bg-white" style="margin-top:100px;">
+      <div class="box-wrap-map">
+        <div class="rd-google-map rd-google-map__model" data-zoom="14" data-x="-74.0150000" data-y="40.643180">
+          <ul class="map_locations"></ul>
+        </div>
+      </div>
+
+      <div class="box-wrap-content">
+        <div class="shell">
+          <div class="range">
+            <div class="cell-xs-12">
+              
+        <div class="box-wrap-content">
+          <div class="shell">
+            <div class="range">
+              <div class="cell-xs-12">
+                <div class="box-contacts box-contacts-vertical box-wrap-content-interactive">
+                  <div class="box-contacts-col">
+                    <div class="box-contacts-block">
+                      <h3>Address</h3>
+                      <address>Shop No 2 Manglam Society, Arbudanagar, Odhav, Ahmedabad, Gujarat 382415</address>
+                    </div>
+                    <div class="box-contacts-block">
+                      <h3>Opening Hours</h3>
+                      <div class="box-contacts-block-inner">
+                        <dl class="box-contacts-terms-list">
+                          <dt>Monday – Friday</dt>
+                          <dd>9am - 6pm</dd>
+                        </dl>
+                        <dl class="box-contacts-terms-list">
+                          <dt>Saturday</dt>
+                          <dd>10am - 4pm</dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-contacts-col box-contacts-right">
+                    <div class="box-contacts-block">
+                      <h3>Get In Touch</h3>
+                      <p style="max-width: 350px;">If you have a question, Send Mail.</p>
+                      
+                        <p><a href="mailto: deeppatidar2302@gmail.com">
+                          <i class="fa-solid fa-envelope"></i>
+                          barbershop@gmail.com</a> </p>
+                         
+            
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+  </div>
+  <div class="modal fade text-center" id="modalWindow" role="dialog">
+    <div class="modal-dialog custom-modal-dialog">
+      <div class="custom-modal-content">
+        <button class="close" type="button" data-dismiss="modal"></button>
+        <div class="shell">
+          <div class="box-portfolio"><img class="box-portfolio-image" src="{% static 'images/barbers-single-1-130x130.jpg' %}" alt="" width="130" height="130"/>
+            <p class="box-portfolio-header">simon wilson</p>
+            <div class="box-portfolio-text">
+              <p>Simon Wilson founded Barbershop in 2003 at the age of 23. He decided to establish a place where the long standing traditions of American barbering could be saved. He kept Barbershop a true place for men, their fathers, and sons, rather than converting it to a unisex salon as was the popular trend at the time. Over the past 13 years, Mr. Wilson has grown his shop from a small, local spot to a nationally and internationally recognized standard in the industry. Simon has been the recipient of various accolades including the HYPE Award for Entrepreneurs and the Hartford Business Journal's 40 Under Forty (Class of 2014). He can be found at the shop on Wednesdays and Fridays.</p>
+            </div>
+            <ul class="inline-list inline-list-md">
+              <li><a class="icon icon-xs link-gray-base fa-facebook" href="#"></a></li>
+              <li><a class="icon icon-xs link-gray-base fa-twitter" href="#"></a></li>
+              <li><a class="icon icon-xs link-gray-base fa-linkedin" href="#"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="snackbars" id="form-output-global"></div>
+
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+      <div class="pswp__ui pswp__ui--hidden">
+        <div class="pswp__top-bar">
+          <div class="pswp__counter"></div>
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+        <div class="pswp__caption">
+          <div class="pswp__caption__cent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+{% endblock body %}
+

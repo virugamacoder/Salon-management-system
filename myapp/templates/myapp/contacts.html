@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %} Contacts {% endblock title %}
+{% load static %}
+
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+{% block body %}
+
+        <div id="wrapper">
+           
+        <div class="box-wrap-content">
+          <div class="shell">
+            <div class="range">
+              <div class="cell-xs-12">
+                <div class="box-contacts box-contacts-vertical box-wrap-content-interactive">
+                  <div class="box-contacts-col">
+                    <div class="box-contacts-block">
+                      <h3>Address</h3>
+                      <address>Shop No 2 Manglam Society, Arbudanagar, Odhav, Ahmedabad, Gujarat 382415</address>
+                    </div>
+                    <div class="box-contacts-block">
+                      <h3>Opening Hours</h3>
+                      <div class="box-contacts-block-inner">
+                        <dl class="box-contacts-terms-list">
+                          <dt>Monday – Friday</dt>
+                          <dd>9am - 6pm</dd>
+                        </dl>
+                        <dl class="box-contacts-terms-list">
+                          <dt>Saturday</dt>
+                          <dd>10am - 4pm</dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-contacts-col box-contacts-right">
+                    <div class="box-contacts-block">
+                      <h3>Get In Touch</h3>
+                      <p style="max-width: 350px;">If you have a question, Send Mail.</p>
+                      
+                        <p><a href="mailto: deeppatidar2302@gmail.com">
+                          <i class="fa-solid fa-envelope"></i>
+                          barbershop@gmail.com</a> </p>
+                         
+            
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock body%}
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+  </body>
+{% endblock endofpage%}
+
+
+

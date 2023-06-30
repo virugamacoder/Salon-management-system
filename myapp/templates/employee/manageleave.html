@@ -1,0 +1,148 @@
+{% extends 'ebase.html' %}
+{% block title %}Service{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+   
+    <div class="main">
+       
+        <div class="content-wrap">
+ 
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-10 p-r-5 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>View Leave <span></span></h1>
+                            </div><br>
+                      
+                          {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div><br><br>
+                          {% endfor %}
+                            <nav class="navbar navbar-light bg-light">
+                              <a class="navbar-brand" href="/employee/getleave/"><i class="ti-plus info"></i>Get Leave</a>
+                            </nav><br><br>
+                        <div class="card">
+                            <div class="card-title">
+                                <h4> Pending For Approval/ Disapprove Leave </h4>
+                            </div>
+                            <div class="card-body">
+                                {% if leavepending %}
+                                <div class="table-responsive">
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                {% comment %} <th>Employee name</th> {% endcomment %}
+                                                <th>Leave Reason</th>
+                                                <th>Leave Start Date</th>
+                                                <th>Leave End Date</th>
+                                                <th>Leave Day</th>
+                                                <th>Leave Status</th>
+                                                <th>Cancel Leave</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in leavepending %}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                {% comment %} <td>{{i.eid.first_name}} {{i.eid.last_name}}</td> {% endcomment %}
+                                                <td>{{i.lreson}}</td>
+                                                <td>{{i.lstart_date}}</td>
+                                                <td>{{i.lend_date}}</td>
+                                                <td>
+                                                    {{i.ldays}} days
+                                                </td>
+                                                <td>{{i.lstatus}}</td>
+                                              
+                                                
+                                                <td><a href="/employee/cancelleave/{{i.lid}}/" onclick="return confirm('Are you sure you want to cancel this Leave?');" style="color:red"> <i
+                                                            class="red large material-icons">cancel</i></a>
+                                                </td>
+
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                     <hr><br><p> No have any Pending For Approval/ Disapprovaly </p>
+                                     {% endif %}
+                                </div>
+                            </div><br>
+                        </div>
+                        <br>
+                        <div class="card">
+                            <div class="card-title">
+                                <h4> Responded  Leave </h4>
+                            </div>
+                            <div class="card-body">
+                                {% if leave %}
+                                <div class="table-responsive">
+                                    <table class="table table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                {% comment %} <th>Employee name</th> {% endcomment %}
+                                                <th>Leave Reason</th>
+                                                <th>Leave Start Date</th>
+                                                <th>Leave End Date</th>
+                                                <th>Leave Day</th>
+                                                <th>Leave Status</th>
+                                                {% comment %} <th>Cancel Leave</th> {% endcomment %}
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in leave %}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                {% comment %} <td>{{i.eid.first_name}} {{i.eid.last_name}}</td> {% endcomment %}
+                                                <td>{{i.lreson}}</td>
+                                                <td>{{i.lstart_date}}</td>
+                                                <td>{{i.lend_date}}</td>
+                                                <td>
+                                                    {{i.ldays}} days
+                                                </td>
+                                                <td>{{i.lstatus}}</td>
+                                             
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                     <hr><br><p> No have any Leave Approval/Disapproval </p>
+                                     {% endif %}
+                                </div>
+                            </div><br>
+                        </div>
+                    {% comment %} </div> {% endcomment %}
+                      
+                    </div>
+                  </div>
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+  
+  
+<script>
+ 
+
+
+ </script>
+{% endblock body %}

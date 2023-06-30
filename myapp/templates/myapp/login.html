@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock title %}
+{% load static %}
+
+{% block bodytag %}
+<body>
+{% endblock bodytag %}
+{% block body %}
+
+        
+        <div id="wrapper">
+          
+          
+          <section class="section-xl bg-periglacial-blue text-center">
+            <div class="shell">
+              <div class="range range-sm-center">
+                <div class="cell-sm-10 cell-md-8 cell-lg-6">
+                  <div class="inset-sm-25">
+                    <h3>Login</h3>
+
+                    
+                    <form class="rd-loginform" action="/loginhandle/" method="POST" class="needs-validation" novalidate>{% csrf_token %}   
+
+                      <div class="form-group">
+                        <label class="form-label-outside" for="login-email">E-mail</label>
+                        <input class="form-control" id="login-email" type="email" name="loginemail" value="{{loginemail}}" data-constraints="@Email @Required" >
+                        
+                      </div>
+                    
+                      <div class="form-group">
+                        <label class="form-label-outside" for="login-email">Password</label>
+                        <input class="form-control" id="login-password" type="password" name="loginpass" value="{{loginpass}}" minlength="8" data-constraints="@Required" >
+                        
+                      </div>
+                    
+                      <button class="btn btn-sm btn-primary btn-block btn-circle" type="submit" >sign in</button>
+                   
+                    </form>
+
+                    {% comment %} <div class="form-group">                    
+                    <div class="pull-left float-left mt-5">
+                      <a href="/resetpass/">Forgot Password ? </a>
+                     </div>
+                    </div>
+                    {% endcomment %}
+                    {% comment %} <div class="form-group">                    
+                    <div class="pull-left float-left mt-5">
+                      <a href="/signup/">Don't have an account? Sign up</a>
+                     </div>
+                    </div> {% endcomment %}
+
+                    <div class="register-link m-t-15 text-center">
+                      <p> <a href="/resetpass1/">Forgot Password ? </a></p>
+                    </div>
+
+                    <div class="register-link m-t-15 text-center">
+                      <p> <a href="/signup/">Don't have an account? Sign up</a></p>
+                    </div>
+                    
+                    
+                </div>
+              </div>
+            </div>
+          </section>
+     
+
+
+          
+         
+
+
+{% endblock body%}
+
+
+
+{% block afterFooter%}
+        </div>
+    <div id="perspective-content-overlay"></div>
+</div>
+{%endblock afterFooter%}
+
+
+{% block  afterNavbar%}
+  </main>
+</div>
+{% endblock afterNavbar%}
+
+
+{% block endofpage%}
+
+<script>
+  (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+</script>
+  </body>
+{% endblock endofpage%}
+
+
+

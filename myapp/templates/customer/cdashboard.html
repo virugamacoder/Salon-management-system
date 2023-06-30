@@ -1,0 +1,28 @@
+{% extends 'cbase.html' %}
+{% block title %} Product Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+
+  {% if message.tags in 'success' %}
+  <div class="alert alert-success" role="alert">
+    {{ message }}
+  </div> 
+
+{% elif message.tags in 'error'%}
+  <div class="alert alert-danger" role="alert">
+    {{ message }} 
+  </div>
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<div class="content-wrap">
+      {% comment %} Wel come Here  {% endcomment %}
+</div>
+
+{% endblock body %}

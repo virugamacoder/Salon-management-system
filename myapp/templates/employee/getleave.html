@@ -1,0 +1,154 @@
+{% extends 'ebase.html' %}
+{% block title %} Product Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/employee/manageleave/">Manage Leave</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Get Leave</li>
+        </ol>
+    </nav>
+    <div class="main">
+
+        <div class="content-wrap">
+
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-6 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title-">
+                                <h1>Get Leave<span></span></h1>
+                            </div><br>
+
+                        </div>
+
+                        <form action="/employee/getleave/" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>{% csrf_token %}
+                                {% comment %} <div class="form-group">
+                                        <label>Employee Username</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInputprice" name="eid" required>
+                                        <div class="invalid-feedback">
+                                            Please enter valid email Address ex abc@gmail.com
+                                        </div>
+                                    </div> {% endcomment %}
+                             <div class="form-group">
+                                <label>Leave Reason</label>
+                                <input type="text" class="form-control" id="exampleFormControlInputprice" name="lreson" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid reason for leave
+                                </div>
+                            </div>
+                              
+                             <div class="form-group">
+                                <label>Leave Start Date</label>
+                                <input type="date" class="form-control" id="lstart_date" name="lstart_date" required >
+                                <div class="invalid-feedback">
+                                    Please enter valid  Start Date
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Leave End Date</label>
+                                <input type="date" class="form-control" id="lend_date" name="lend_date" required disabled>
+                                <div class="invalid-feedback">
+                                    Please enter valid End Date
+                                </div>
+                            </div>
+                            
+
+                            {% comment %} <div class="form-group">
+                                <label for="gender">Leave Status</label>
+                                <br>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="lstatus" id="male" value="APPROVAL" required>
+                                    <label class="form-check-label" for="male">
+                                    APPROVAL
+                                    </label>
+                                   
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="lstatus" id="female" value=" NOT APPROVAL" required>
+                                    <label class="form-check-label" for="female">
+                                       NOT APPROVAL
+                                    </label>
+                                </div>
+                            </div> {% endcomment %}
+                        
+                           
+
+                            <button type="submit" class="btn btn-primary" id="fire">Save</button>
+                        </form>
+                        
+
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- content warp -->
+    </div><!-- main -->
+
+</div><!-- content warp -->
+
+
+    <script src="{% static 'jsadmin/bootstrap.min.js' %} "></script>
+<script src="{% static 'jsadmin/popper.js' %} "></script>
+
+<script src="{% static 'jsadmin/jquery.js' %} "></script>
+
+<script>
+
+    const today = new Date().toISOString().split('T')[0];
+    // Set the min attribute of the date input to today's date
+    document.getElementById('lstart_date').setAttribute('min', today);
+    
+    const startDateInput = document.getElementById('lstart_date');
+  const endDateInput = document.getElementById('lend_date');
+    startDateInput.addEventListener('input', function() {
+        const startDate = new Date(this.value);
+        const nextDay = new Date(startDate.getTime() + 24 * 60 * 60 * 1000);
+        const nextDayString = nextDay.toISOString().split('T')[0];
+        endDateInput.setAttribute('min', nextDayString);
+        
+        // Set the end date input value to the next day by default
+        endDateInput.value = nextDayString;
+        
+        // Enable the end date input so the user can select a date
+        endDateInput.removeAttribute('disabled');
+      });
+
+
+     (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+            
+         
+            var today = new Date().toISOString().split('T')[0];
+            var maxDate = new Date();
+            maxDate.setDate(maxDate.getDate()+30);
+            maxDate = maxDate.toISOString().split('T')[0]; 
+            
+            document.getElementById("lstart_date").setAttribute("min", today);
+            document.getElementById("lend_date").setAttribute("max", maxDate);
+            event.preventDefault();
+             event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+
+{% endblock body %}

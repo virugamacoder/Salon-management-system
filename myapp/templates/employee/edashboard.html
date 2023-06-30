@@ -1,0 +1,29 @@
+{% extends 'ebase.html' %}
+{% block title %} Employee Dashboard{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+
+  {% if message.tags in 'success' %}
+  <div class="alert alert-success" role="alert">
+    {{ message }}
+  </div> 
+
+{% elif message.tags in 'error'%}
+  <div class="alert alert-danger" role="alert">
+    {{ message }} 
+  </div>
+
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<div class="content-wrap">
+     hello Employee
+</div>
+
+{% endblock body %}

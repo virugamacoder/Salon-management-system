@@ -1,0 +1,162 @@
+{% extends 'main1.html' %}
+{% block title %}Service{% endblock title %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+
+<div class="content-wrap">
+ 
+   
+    <div class="main">
+       
+        <div class="content-wrap">
+ 
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-lg-10 p-r-5 title-margin-right">
+                       
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Manage Order<span></span></h1>
+                            </div><br>
+                      
+                                
+                      
+                          {% for message in messages %}
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div><br><br>
+                          {% endfor %}
+                        
+                        
+                     <div class="card">
+                            <div class="card-title">
+                                <h4> Pending Delivary Order List </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                     {% if order %}
+                                    <table class="table table-hover ">
+                                       
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo.</th>
+                                                <th>Customer Name</th>
+                                                <th>Email Address</th>
+                                                <th>Order Palce Date</th>
+                                                <th>Payment Mode</th>
+                                                <th>Delivered Status </th>
+                                                <th>View Full Details</th>
+                                                <th>Change Delivered status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in order %}
+                                            <tr>
+                                                <th>{{forloop.counter}}</th>
+                                                {% comment %} <td><img src="/media/{{i.pid.pimg}}/" alt="" width="100" height="100" /></td> {% endcomment %}
+                                                <td>{{i.cid.first_name}} {{i.cid.last_name}}</td>
+                                                <td>{{i.cid.email}}</td>
+                                                <td>{{i.order_place_date}}</td>
+                                                 <td>{{i.payment_mode}}</td>    
+                                                <td>
+
+                                                    {% if i.delivered_status == "NO" %}
+                                                     <i class="fa-solid fa-circle-xmark" style="color: #d51010;"></i> 
+                                                     {% else %}
+
+                                                     {{i.delivered_status}}
+                                                    {% endif %}
+
+                                                </td>
+                                                <td> <a href="/admin/order/vieworder/{{i.oid}}/" style="color:blue"><i
+                                                            class=" large ti-new-window"></i></a>
+                                                </td>
+                                                {% comment %} ti-pencil-alt {% endcomment %}
+                                                <td> <a href="/admin/order/vieworder/{{i.oid}}/" style="color:green"><i
+                                                            class=" large ti-pencil-alt"></i></a>
+                                                </td>
+                         
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+
+                                    </table>
+                                    {% else %}
+                                    <p>No Any presnet pending Delivery </p>
+                                    {% endif %}
+                                </div>
+                                <hr>
+                              
+                              
+                            </div>
+                        <!-- </div> -->
+                      
+                    </div><br><br>
+                    <div class="card">
+                        <div class="card-title">
+                            <h4> Complete Delivary Order List </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                {% if dorder %}
+                                <table class="table table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th>SrNo.</th>
+                                            <th>Customer Name</th>
+                                            <th>Email Address</th>
+                                            <th>Order Date</th>
+                                            <th>Mode</th>
+                                            <th>Delivered Status </th>
+                                            <th>View Full Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in dorder %}
+                                        <tr>
+                                            <th>{{forloop.counter}}</th>
+                                            {% comment %} <td><img src="/media/{{i.pid.pimg}}" alt="" width="100" height="100" /></td> {% endcomment %}
+                                            
+                                            <td>{{i.cid.first_name}} {{i.cid.last_name}}</td>
+                                            <td>{{i.cid.email}}</td>
+                                            <td>{{i.order_place_date}}</td>
+                                            <td>{{i.payment_mode}}</td>
+                                            <td><i class="fa-sharp fa-solid fa-circle-check" style="color: #00852e;"></i> </td>
+                                            <td> <a href="/admin/order/vieworder/{{i.oid}}/" style="color:blue"><i
+                                                        class=" large ti-new-window"></i></a>
+                                            </td>
+                                           
+                                        </tr>
+                    
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                    <p>No Any Pending Order For Delivery</p>
+                                    {% endif %}
+                            </div>
+                        </div>
+                  </div>
+            </div>
+         
+        </div>
+    </div>
+
+</div>
+  
+
+    {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             {% endcomment %}
+<script>
+
+
+ </script>
+
+{% endblock body %}
