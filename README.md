@@ -1,20 +1,18 @@
-![image](https://github.com/virugama/Salon-management-system/assets/89926772/19c2e716-6f98-4626-ae70-b17a9796f694)
+![Salon Management System](https://github.com/virugama/Salon-management-system/assets/89926772/19c2e716-6f98-4626-ae70-b17a9796f694)
 
-# Salon-management-system
-Salon management is an interactive and user-friendly environment that provide  the get salon services appointment and buy product online. Using this web  application is regular customers and maintaining their details, Maintaining  Employee data, salon services and maintaining their details such a prices,  discerption, and Maintain Appointment Data.
+# Salon-management-system :scissors: :computer:
 
+Salon management is an interactive and user-friendly environment that provides salon services appointments and allows clients to buy products online. This web application is designed for regular customers to maintain their details, manage employee data, salon services, and appointment data.
 
-<br/>
+## STACK-HOLDERS OF THE SYSTEM :busts_in_silhouette:
 
-## STACK-HOLDERS OF SYSTEM
-- Admin
-- Client
-- Employee
-- Visitor
-  
-<br/>
+- Admin :crown:
+- Client :man: :woman:
+- Employee :barber:
+- Visitor :bust_in_silhouette:
 
-## Technology stack 
+## Technology Stack :computer:
+
 <p align="left">
   <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> 
@@ -32,36 +30,24 @@ Salon management is an interactive and user-friendly environment that provide  t
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> 
 </p>
 
-<br/>
 
-## System functionality
-- Registration
-- Login
-- Appointment
-- Dashboard
-- Manage Employee (barber)
-- Manage Product
-- Manage Service
-- Manage customer details
--  Manage Employee Leave
-- E-Shop
+## System Functionality :gear:
 
-<br/>
+- Registration :pencil:
+- Login :key:
+- Appointment :calendar:
+- Dashboard :bar_chart:
+- Manage Employee (barber) :technologist:
+- Manage Product :shopping_cart:
+- Manage Service :scissors:
+- Manage Customer Details :busts_in_silhouette:
+- Manage Employee Leave :calendar:
+- E-Shop :shopping_bags:
 
-## System Like
+## System Preview :eyes:
 
-![Alt text](https://github.com/virugama/Salon-management-system/assets/89926772/3c40ef72-71e1-424c-87c8-444dbe5523f9 )
+![Preview 1](https://github.com/virugama/Salon-management-system/assets/89926772/3c40ef72-71e1-424c-87c8-444dbe5523f9)
+![Preview 2](https://github.com/virugama/Salon-management-system/assets/89926772/dc07454c-7882-47ca-921c-2774cf6e39d9)
+![Preview 3](https://github.com/virugama/Salon-management-system/assets/89926772/1dd99e89-5fdf-4c5a-b888-50e8c0e670b3)
 
-![image](https://github.com/virugama/Salon-management-system/assets/89926772/dc07454c-7882-47ca-921c-2774cf6e39d9)
-
-![image](https://github.com/virugama/Salon-management-system/assets/89926772/1dd99e89-5fdf-4c5a-b888-50e8c0e670b3)
-
-
-
-
-
-
-
-
-
-
+Have fun using the Salon Management System and happy coding! If you encounter any issues or have suggestions for improvements, please create an issue in the repository, and we'll be happy to assist you.
