@@ -42,7 +42,7 @@ Salon management is an interactive and user-friendly environment that provides s
 - Manage Service :scissors:
 - Manage Customer Details :busts_in_silhouette:
 - Manage Employee Leave :calendar:
-- E-Shop :shopping_bags:
+- E-Shop :shopping_cart:
 
 ## System Preview :eyes:
 
